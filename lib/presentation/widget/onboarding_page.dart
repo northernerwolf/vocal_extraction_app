@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:vocal_extraction_app/presentation/pages/auth/subscription_page.dart';
 import 'package:vocal_extraction_app/presentation/widget/onboarding_item.dart';
+import 'package:vocal_extraction_app/utils/custom/custom_button.dart';
 import 'package:vocal_extraction_app/utils/design/app_colors.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -134,31 +135,11 @@ class WelcomePage extends StatelessWidget {
                                             builder: (context) =>
                                                 const SubscriptionPage()));
                                   },
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 20, right: 20, left: 20),
-                                    child: Container(
-                                      height: 50,
-                                      width: MediaQuery.of(context).size.width,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                              color: AppColors.borderColor),
-                                          color: AppColors.authRegisterColor,
-                                          borderRadius:
-                                              BorderRadius.circular(15)),
-                                      child: const Center(
-                                        child: Text(
-                                          'Get started!',
-                                          style: TextStyle(
-                                              color: AppColors.primary,
-                                              fontSize: 16,
-                                              fontFamily: 'ClashDisplay',
-                                              fontStyle: FontStyle.normal,
-                                              fontWeight: FontWeight.w700),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
+                                  child: const Padding(
+                                      padding: EdgeInsets.only(
+                                          top: 20, right: 20, left: 20),
+                                      child:
+                                          CustomButton(title: 'Get started!')),
                                 )
                         ]),
                       ),

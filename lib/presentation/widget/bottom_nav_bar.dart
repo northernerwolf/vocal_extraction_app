@@ -21,10 +21,8 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
 
   List page = [
     const InitialPage(),
-    // const ExploreScreen(),
     const MyLibraryPage(),
     const SettingsPage()
-    // const ProfileScreen(),
   ];
 
   @override
