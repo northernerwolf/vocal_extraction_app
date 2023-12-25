@@ -90,7 +90,7 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
                 padding: const EdgeInsets.only(top: 16),
                 child: Container(
                   width: size,
-                  height: 356,
+                  // height: 356,
                   decoration: BoxDecoration(
                       color: AppColors.cartColor,
                       borderRadius: BorderRadius.circular(16)),

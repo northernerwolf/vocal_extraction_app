@@ -22,44 +22,44 @@ class BottomNavbarButton extends StatefulWidget {
 
 class _BottomNavbarButtonState extends State<BottomNavbarButton> {
   List<String> title = [
-    'order',
-    'about',
-    'profile',
+    'Songs',
+    'Library',
+    'Settings',
   ];
 
   List iconsLight = [
     CustomIcon(
-        title: 'assets/icons/box_new.svg',
-        height: 26,
-        width: 26,
-        color: AppColors.oneBoardColor),
+        title: 'assets/icons/musical-note.svg',
+        height: 24,
+        width: 24,
+        color: AppColors.subtitleColor),
     CustomIcon(
-        title: 'assets/icons/logo.svg',
-        height: 26,
-        width: 26,
-        color: AppColors.oneBoardColor),
+        title: 'assets/icons/Union.svg',
+        height: 24,
+        width: 24,
+        color: AppColors.subtitleColor),
     CustomIcon(
-        title: 'assets/icons/person_cargo.svg',
-        height: 26,
-        width: 26,
-        color: AppColors.oneBoardColor),
+        title: 'assets/icons/cog-6-tooth.svg',
+        height: 24,
+        width: 24,
+        color: AppColors.subtitleColor),
   ];
 
   List iconsBold = [
     CustomIcon(
-        title: 'assets/icons/box_new.svg',
-        height: 26,
-        width: 26,
+        title: 'assets/icons/musical-note.svg',
+        height: 24,
+        width: 24,
         color: AppColors.primary),
     CustomIcon(
-        title: 'assets/icons/logo.svg',
-        height: 35,
-        width: 35,
+        title: 'assets/icons/Union.svg',
+        height: 24,
+        width: 24,
         color: AppColors.primary),
     CustomIcon(
-        title: 'assets/icons/person_cargo.svg',
-        height: 26,
-        width: 26,
+        title: 'assets/icons/cog-6-tooth.svg',
+        height: 24,
+        width: 24,
         color: AppColors.primary),
   ];
 
@@ -114,18 +114,9 @@ class _BottomNavbarButtonState extends State<BottomNavbarButton> {
                         //   )
                         : widget.icon
                             ? const Icon(Icons.add)
-                            : Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Container(
-                                  child: iconsBold[widget.index],
-                                )
-
-                                // Icon(
-                                //   iconsBold[index],
-                                //   size: 18,
-                                //   color: Colors.amber,
-                                // ),
-                                ),
+                            : Container(
+                                child: iconsBold[widget.index],
+                              ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10),
@@ -134,13 +125,13 @@ class _BottomNavbarButtonState extends State<BottomNavbarButton> {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: widget.index == widget.selectedIndex
-                              ? AppColors.primary
-                              : AppColors.oneBoardColor,
+                              ? Colors.white
+                              : AppColors.subtitleColor,
                           fontWeight: widget.index == widget.selectedIndex
                               ? FontWeight.w600
-                              : FontWeight.w400,
+                              : FontWeight.w500,
                           fontStyle: FontStyle.normal,
-                          fontFamily: 'Roboto',
+                          fontFamily: 'Poppins',
                           fontSize: 12),
                     ),
                   )

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:vocal_extraction_app/presentation/widget/onboarding_page.dart';
+import 'package:vocal_extraction_app/presentation/widget/bottom_nav_bar.dart';
+import 'package:vocal_extraction_app/presentation/widget/splash_screen.dart';
 import 'package:vocal_extraction_app/utils/design/app_colors.dart';
 
 int? initScreen;
@@ -21,17 +22,23 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
+
       theme: ThemeData(
-        primaryColor: AppColors.backgroundColor,
-      ),
-      // initialRoute: initScreen == 0 || initScreen == null ? "first" : "/",
-      //   routes: {
-      //     '/': (context) => const SpalshScreen(),
-      //     "first": (context) => const LanguageScreen(),
-      //   },
-      home: WelcomePage(),
+          backgroundColor: AppColors.backgroundColor,
+          primaryColorDark: AppColors.backgroundColor,
+          primaryColor: AppColors.backgroundColor,
+          primaryColorLight: AppColors.backgroundColor,
+          dividerColor: AppColors.backgroundColor,
+          appBarTheme: AppBarTheme(
+            color: AppColors.backgroundColor,
+          )),
+      initialRoute: initScreen == 0 || initScreen == null ? "first" : "/",
+      routes: {
+        '/': (context) => const SpalshScreen(),
+        "first": (context) => const BottomNavScreen(),
+      },
+      // home: WelcomePage(),
     );
   }
 }

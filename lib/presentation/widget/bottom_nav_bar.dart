@@ -3,6 +3,7 @@ import 'package:vocal_extraction_app/presentation/pages/initial/initial.dart';
 import 'package:vocal_extraction_app/presentation/pages/library/library.dart';
 import 'package:vocal_extraction_app/presentation/pages/settings/settings.dart';
 import 'package:vocal_extraction_app/presentation/widget/bottom_navbar_button.dart';
+import 'package:vocal_extraction_app/utils/design/app_colors.dart';
 
 class BottomNavScreen extends StatefulWidget {
   const BottomNavScreen({Key? key}) : super(key: key);
@@ -30,18 +31,8 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
     return Scaffold(
       bottomNavigationBar: Container(
         height: 68,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(12), topRight: Radius.circular(12)),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.blueGrey.withOpacity(0.1),
-              spreadRadius: 5,
-              blurRadius: 7,
-              offset: const Offset(0, 3),
-            ),
-          ],
+        decoration: const BoxDecoration(
+          color: AppColors.backgroundColor,
         ),
         child: Row(
           children: [
