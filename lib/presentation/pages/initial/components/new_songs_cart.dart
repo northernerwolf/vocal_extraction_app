@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:vocal_extraction_app/utils/design/app_colors.dart';
 
 class NewSongsCart extends StatelessWidget {
   final String icon;
   final String title;
-  final String sub_title;
+  final String subTitle;
   const NewSongsCart(
       {required this.icon,
       required this.title,
-      required this.sub_title,
+      required this.subTitle,
       super.key});
 
   @override
@@ -51,19 +50,20 @@ class NewSongsCart extends StatelessWidget {
                         fontFamily: 'ClashDisplay',
                       ),
                     ),
-                    // SizedBox(
-                    //   child: Text(
-                    //     sub_title,
-                    //     // textAlign: TextAlign.start,
-                    //     maxLines: 4,
-                    //     style: const TextStyle(
-                    //       color: AppColors.subtitleColor,
-                    //       fontWeight: FontWeight.w400,
-                    //       fontSize: 14,
-                    //       fontFamily: 'Poppins',
-                    //     ),
-                    //   ),
-                    // ),
+                    SizedBox(
+                      width: size - 150,
+                      child: Text(
+                        subTitle,
+                        // textAlign: TextAlign.start,
+                        maxLines: 4,
+                        style: const TextStyle(
+                          color: AppColors.subtitleColor,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 14,
+                          fontFamily: 'Poppins',
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               )

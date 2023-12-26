@@ -5,11 +5,11 @@ import 'package:vocal_extraction_app/utils/design/app_colors.dart';
 class SubscriptionCart extends StatelessWidget {
   final String icon;
   final String title;
-  final String sub_title;
+  final String subTitle;
   const SubscriptionCart(
       {required this.icon,
       required this.title,
-      required this.sub_title,
+      required this.subTitle,
       super.key});
 
   @override
@@ -57,7 +57,7 @@ class SubscriptionCart extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      sub_title,
+                      subTitle,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         color: AppColors.subtitleColor,

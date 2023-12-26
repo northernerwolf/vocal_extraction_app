@@ -16,7 +16,7 @@ class _NewSongsState extends State<NewSongs> {
     'assets/images/cloud.png'
   ];
   List<String> title = ['Files App', 'Gallery', 'Cloud storage'];
-  List<String> sub_title = [
+  List<String> subTitle = [
     'Songs from the Files App, Google  Drive, Dropbox, and more.',
     'Add media from your device’s gallery',
     'Any media from cloud services or public URLs. Streaming links won’t work.'
@@ -43,15 +43,16 @@ class _NewSongsState extends State<NewSongs> {
           ),
           leading: Padding(
             padding: const EdgeInsets.only(
-              left: 20,
+              left: 10,
               right: 20,
             ),
             child: IconButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.of(context).pop();
                 },
                 icon: const Icon(
                   Icons.close,
+                  size: 24,
                   color: Colors.white,
                 )),
           ),
@@ -72,8 +73,31 @@ class _NewSongsState extends State<NewSongs> {
                   return NewSongsCart(
                       icon: image[index],
                       title: title[index],
-                      sub_title: sub_title[index]);
+                      subTitle: subTitle[index]);
                 }),
+            const Text(
+              'Supported files',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w500,
+                fontSize: 18,
+                fontFamily: 'ClashDisplay',
+              ),
+            ),
+            const SizedBox(
+              child: Text(
+                'MP3, WAV, FLAC, M4A, MP4, MOV, WMA',
+                // textAlign: TextAlign.start,
+                maxLines: 4,
+                style: TextStyle(
+                  color: AppColors.subtitleColor,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 14,
+                  fontFamily: 'Poppins',
+                ),
+              ),
+            ),
           ],
         ),
       )),

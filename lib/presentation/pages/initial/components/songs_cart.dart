@@ -4,8 +4,8 @@ import 'package:vocal_extraction_app/utils/design/app_colors.dart';
 
 class SongsCart extends StatelessWidget {
   final String title;
-  final String sub_title;
-  const SongsCart({required this.title, required this.sub_title, super.key});
+  final String subTitle;
+  const SongsCart({required this.title, required this.subTitle, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,7 @@ class SongsCart extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      sub_title,
+                      subTitle,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         color: AppColors.subtitleColor,

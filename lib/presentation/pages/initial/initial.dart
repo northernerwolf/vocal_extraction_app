@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:vocal_extraction_app/presentation/pages/initial/components/songs_cart.dart';
 import 'package:vocal_extraction_app/presentation/pages/initial/screens/new_songs.dart';
+import 'package:vocal_extraction_app/presentation/pages/initial/screens/search_screen.dart';
+import 'package:vocal_extraction_app/presentation/widget/no_data_widget.dart';
 import 'package:vocal_extraction_app/utils/design/app_colors.dart';
 
 class InitialPage extends StatefulWidget {
@@ -23,7 +24,7 @@ class _InitialPageState extends State<InitialPage> {
           automaticallyImplyLeading: false,
           leadingWidth: double.infinity,
           leading: Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 14),
+            padding: const EdgeInsets.only(left: 15, right: 5, bottom: 14),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -38,7 +39,10 @@ class _InitialPageState extends State<InitialPage> {
                   ),
                 ),
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const SearchScreen()));
+                    },
                     icon: SvgPicture.asset('assets/icons/search.svg'))
               ],
             ),
@@ -60,46 +64,13 @@ class _InitialPageState extends State<InitialPage> {
             //       return SongsCart(
             //           title: 'Miyagi - I got love', sub_title: '3:45');
             //     }),
-            Padding(
-              padding: const EdgeInsets.only(top: 120),
-              child: Center(
-                child: Column(
-                  children: [
-                    Image.asset(
-                      'assets/images/no_data.png',
-                      height: 150,
-                      width: 150,
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(top: 10),
-                      child: Text(
-                        'Get Started!',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 18,
-                          fontFamily: 'ClashDisplay',
-                        ),
-                      ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 50, right: 50, top: 15),
-                      child: Text(
-                        'Click on the button at the bottom to create a new form',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 14,
-                          fontFamily: 'Poppins',
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+
+            const NoDataWidget(
+              image: 'assets/images/no_data.png',
+              text: 'Get Started!',
+              text2: 'Click on the button at the bottom to create a new form',
             ),
+
             const Spacer(),
             InkWell(
               onTap: () {

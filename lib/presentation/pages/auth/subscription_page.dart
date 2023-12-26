@@ -83,7 +83,7 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
                       return SubscriptionCart(
                           icon: icon[index],
                           title: title[index],
-                          sub_title: sub_title[index]);
+                          subTitle: sub_title[index]);
                     }),
               ),
               Padding(

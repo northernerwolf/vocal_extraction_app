@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:vocal_extraction_app/presentation/widget/onboarding_page.dart';
+import 'package:vocal_extraction_app/presentation/widget/bottom_nav_bar.dart';
 import 'package:vocal_extraction_app/utils/design/app_colors.dart';
 
 class SpalshScreen extends StatefulWidget {
@@ -22,7 +22,7 @@ class _SpalshScreenState extends State<SpalshScreen>
 
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => WelcomePage()),
+          MaterialPageRoute(builder: (context) => const BottomNavScreen()),
           (route) => false);
     });
   }
