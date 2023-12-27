@@ -78,28 +78,6 @@ class _BottomNavbarButtonState extends State<BottomNavbarButton> {
               curve: Curves.decelerate,
               child: Column(
                 children: [
-                  // Container(
-                  //   height: 1,
-                  //   decoration: const BoxDecoration(
-                  //       color: Colors.white,
-                  //       borderRadius: BorderRadius.only(
-                  //           topLeft: Radius.circular(12),
-                  //           topRight: Radius.circular(12))
-                  //           ),
-                  // ),
-                  // Padding(
-                  //   padding: const EdgeInsets.only(top: 2),
-                  //   child: Visibility(
-                  //     visible: widget.index == widget.selectedIndex,
-                  //     child: Container(
-                  //       height: 6,
-                  //       width: 35,
-                  //       decoration: BoxDecoration(
-                  //           color: AppColors.mainColor,
-                  //           borderRadius: BorderRadius.circular(5)),
-                  //     ),
-                  //   ),
-                  // ),
                   Expanded(
                     child: widget.index != widget.selectedIndex
                         ? widget.icon
@@ -107,11 +85,6 @@ class _BottomNavbarButtonState extends State<BottomNavbarButton> {
                             : Container(
                                 child: iconsLight[widget.index],
                               )
-                        // Icon(
-                        //     iconsLight[index],
-                        //     size: 18,
-                        //     color: Colors.black,
-                        //   )
                         : widget.icon
                             ? const Icon(Icons.add)
                             : Container(

@@ -14,6 +14,7 @@ class SubscriptionPage extends StatefulWidget {
 }
 
 class _SubscriptionPageState extends State<SubscriptionPage> {
+  int selectedCheckboxIndex = -1;
   List<String> icon = [
     'assets/icons/tabler-icon-brain.svg',
     'assets/icons/tabler-icon-infinity.svg',
@@ -106,7 +107,16 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
                                 physics: const NeverScrollableScrollPhysics(),
                                 itemBuilder: (BuildContext context, index) {
                                   return ChekCart(
-                                      date: date[index], cost: cost[index]);
+                                    date: date[index],
+                                    cost: cost[index],
+                                    index: index,
+                                    isSelected: selectedCheckboxIndex == index,
+                                    onSelected: () {
+                                      setState(() {
+                                        selectedCheckboxIndex = index;
+                                      });
+                                    },
+                                  );
                                 }),
                             InkWell(
                                 onTap: () {},

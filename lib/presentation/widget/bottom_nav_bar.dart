@@ -44,14 +44,6 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
                     onTapp: () {
                       onTapp(0);
                     })),
-            // Expanded(
-            //     child: BottomNavbarButton(
-            //         icon: false,
-            //         index: 1,
-            //         selectedIndex: selectedIndex,
-            //         onTapp: () {
-            //           onTapp(1);
-            //         })),
             Expanded(
                 child: BottomNavbarButton(
                     icon: false,
