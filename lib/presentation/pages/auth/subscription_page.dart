@@ -29,7 +29,7 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
   ];
 
   List<String> date = ['Unlimited', 'Monthly', 'Weekly'];
-  List<String> cost = ['\$99.99 month', '\$12.99 month', '\$5.99 month'];
+  List<String> cost = ['\$79.99', '\$9.99 monthly', '\$4.99 weekly'];
   @override
   Widget build(BuildContext context) {
     double size = MediaQuery.of(context).size.width;
@@ -102,28 +102,31 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
                         child: Column(
                           children: [
                             ListView.builder(
-                                itemCount: 3,
+                                itemCount: 4,
                                 shrinkWrap: true,
                                 physics: const NeverScrollableScrollPhysics(),
                                 itemBuilder: (BuildContext context, index) {
-                                  return ChekCart(
-                                    date: date[index],
-                                    cost: cost[index],
-                                    index: index,
-                                    isSelected: selectedCheckboxIndex == index,
-                                    onSelected: () {
-                                      setState(() {
-                                        selectedCheckboxIndex = index;
-                                      });
-                                    },
-                                  );
+                                  return index != 3
+                                      ? ChekCart(
+                                          date: date[index],
+                                          cost: cost[index],
+                                          index: index,
+                                          isSelected:
+                                              selectedCheckboxIndex == index,
+                                          onSelected: () {
+                                            setState(() {
+                                              selectedCheckboxIndex = index;
+                                            });
+                                          },
+                                        )
+                                      : InkWell(
+                                          onTap: () {},
+                                          child: const Padding(
+                                            padding: EdgeInsets.only(top: 4),
+                                            child: CustomButton(
+                                                title: 'Subscribe'),
+                                          ));
                                 }),
-                            InkWell(
-                                onTap: () {},
-                                child: const Padding(
-                                  padding: EdgeInsets.only(top: 4),
-                                  child: CustomButton(title: 'Subscribe'),
-                                ))
                           ],
                         ),
                       ),

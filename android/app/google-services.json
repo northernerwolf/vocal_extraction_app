@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "82788046448",
+    "project_id": "mus-voc-extractor",
+    "storage_bucket": "mus-voc-extractor.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:82788046448:android:2f047da2cf64b0d3ae86b5",
+        "android_client_info": {
+          "package_name": "com.northernerwolf.vocal_extraction_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUvFuHgA79YAGTEDT2HRiU9bEGVerRn2s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

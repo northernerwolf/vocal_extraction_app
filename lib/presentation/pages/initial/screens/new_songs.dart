@@ -70,10 +70,15 @@ class _NewSongsState extends State<NewSongs> {
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (BuildContext context, index) {
-                  return NewSongsCart(
-                      icon: image[index],
-                      title: title[index],
-                      subTitle: subTitle[index]);
+                  return InkWell(
+                    onTap: () {
+                      if (index == 3) {}
+                    },
+                    child: NewSongsCart(
+                        icon: image[index],
+                        title: title[index],
+                        subTitle: subTitle[index]),
+                  );
                 }),
             const Text(
               'Supported files',
