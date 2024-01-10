@@ -14,7 +14,7 @@ class PostUrlProvider with ChangeNotifier {
     isLoading = true;
     notifyListeners();
     if (result.statusCode == 200) {
-      print('data have');
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         backgroundColor: Colors.green,
         content: Text(

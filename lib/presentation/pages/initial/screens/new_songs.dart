@@ -14,16 +14,18 @@ class NewSongs extends StatefulWidget {
 
 class _NewSongsState extends State<NewSongs> {
   late final TextEditingController textField1Controller;
-
+  late final TextEditingController textField2Controller;
   @override
   void initState() {
     super.initState();
     textField1Controller = TextEditingController();
+    textField2Controller = TextEditingController();
   }
 
   @override
   void dispose() {
     textField1Controller.dispose();
+    textField2Controller.dispose();
 
     super.dispose();
   }
@@ -129,7 +131,6 @@ class _NewSongsState extends State<NewSongs> {
                                         hintText: "https://...",
                                         hintStyle:
                                             TextStyle(color: Colors.grey)),
-                                    validator: (value) {},
                                   ),
                                 ),
                                 Selector<PostUrlProvider, bool>(
@@ -185,7 +186,11 @@ class _NewSongsState extends State<NewSongs> {
                           ),
                         )
                       : InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            if (index == 3) {
+                              _showDialog();
+                            }
+                          },
                           child: NewSongsCart(
                               icon: image[index],
                               title: title[index],
@@ -219,6 +224,73 @@ class _NewSongsState extends State<NewSongs> {
           ],
         ),
       )),
+    );
+  }
+
+  _showDialog() async {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: AppColors.cartColor,
+          title: Text(
+            'Enter Text',
+            style: TextStyle(color: Colors.white),
+          ),
+          content: Padding(
+            padding: const EdgeInsets.only(top: 15),
+            child: Row(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                      color: AppColors.backgroundColor,
+                      borderRadius: BorderRadius.circular(10)),
+                  height: 45,
+                  width: MediaQuery.of(context).size.width - 150,
+                  child: TextFormField(
+                    controller: textField2Controller,
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.url,
+                    cursorColor: Colors.white,
+                    style: const TextStyle(color: Colors.white),
+                    decoration: const InputDecoration(
+                        fillColor: AppColors.backgroundColor,
+                        filled: true,
+                        border: InputBorder.none,
+                        // isDense: true,
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                        ),
+                        hintText: "https://...",
+                        hintStyle: TextStyle(color: Colors.grey)),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            ElevatedButton(
+              onPressed: () async {
+                setState(() async {
+                  if (textField2Controller.text.isNotEmpty) {
+                    await context.read<PostUrlProvider>().postUrl(
+                        textField2Controller.text.toString(), false, context);
+                    Navigator.pop(context);
+                  } else {}
+                });
+              },
+              child: Text('OK'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {});
+                Navigator.pop(context);
+              },
+              child: Text('Cancel'),
+            ),
+          ],
+        );
+      },
     );
   }
 }
