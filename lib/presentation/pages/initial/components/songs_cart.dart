@@ -35,14 +35,18 @@ class SongsCart extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      title,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16,
-                        fontFamily: 'ClashDisplay',
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width - 200,
+                      child: Text(
+                        title,
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                          fontFamily: 'ClashDisplay',
+                        ),
                       ),
                     ),
                     Text(
