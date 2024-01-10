@@ -1,4 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vocal_extraction_app/presentation/pages/auth/components/chek_cart.dart';
 
 import 'package:vocal_extraction_app/presentation/pages/auth/components/subscription_cart.dart';
@@ -30,6 +34,64 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
 
   List<String> date = ['Unlimited', 'Monthly', 'Weekly'];
   List<String> cost = ['\$79.99', '\$9.99 monthly', '\$4.99 weekly'];
+
+  @override
+  void initState() {
+    super.initState();
+
+    fetchData();
+  }
+
+  void fetchData() async {
+    await FirebaseAuth.instance.signInAnonymously();
+    var user = await FirebaseAuth.instance.currentUser;
+    setDataToFirestore('dd', 'u', user!.uid.toString());
+    // final FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+    // String? token = await firebaseMessaging.getToken();
+    // print(token);
+
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
+    // String? tokenAuth = prefs.getString('tokenFcm');
+
+    // if (tokenAuth == null) {
+    //   await prefs.setString('tokenFcm', token!);
+    //   setDataToFirestore('dd', 'u', user!.uid.toString());
+    // } else {
+    //   if (tokenAuth != token) {
+    //     await prefs.setString('tokenFcm', token!);
+    //     setDataToFirestoreUpdate('ee', 'eee', user!.uid.toString());
+    //   }
+    // }
+  }
+
+  void setDataToFirestore(String audioUrl, String fcmToken, String uid) async {
+    try {
+      await FirebaseFirestore.instance.collection('Users').doc(uid).set({
+        'audio': audioUrl,
+        'fcm': fcmToken,
+        'uid': uid,
+      });
+      print('Data set successfully!');
+      print(uid);
+    } catch (e) {
+      print('Error setting data: $e');
+    }
+  }
+
+  void setDataToFirestoreUpdate(
+      String audioUrl, String fcmToken, String uid) async {
+    try {
+      await FirebaseFirestore.instance.collection('Users').doc(uid).update({
+        'audio': audioUrl,
+        'fcm': fcmToken,
+        'uid': uid,
+      });
+      print('Data set successfully!');
+    } catch (e) {
+      print('Error setting data: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     double size = MediaQuery.of(context).size.width;

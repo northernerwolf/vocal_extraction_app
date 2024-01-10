@@ -39,7 +39,7 @@ class CustomThumbShape extends SliderComponentShape {
       ..style = PaintingStyle.fill;
     canvas.drawCircle(center, thumbRadius, borderPaint);
     canvas.drawCircle(center, thumbRadius, fillPaint);
-    canvas.drawCircle(center, thumbRadius / 2.8, centerPaint);
+    canvas.drawCircle(center, thumbRadius / 3, centerPaint);
   }
 }
 
@@ -53,28 +53,31 @@ class _VerticalCustomSliderState extends State<VerticalCustomSlider> {
 
   @override
   Widget build(BuildContext context) {
-    return SliderTheme(
-      data: SliderTheme.of(context).copyWith(
-        activeTrackColor: Colors.blue,
-        inactiveTrackColor: AppColors.cartColor,
-        trackHeight: 7,
-        overlayColor: Colors.blue.withAlpha(32),
-        overlayShape: RoundSliderOverlayShape(overlayRadius: 24.0),
-        thumbShape: CustomThumbShape(thumbRadius: 16.0),
-      ),
-      child: RotatedBox(
-        quarterTurns: 3,
-        child: Slider(
-          value: _sliderValue,
-          onChanged: (value) {
-            setState(() {
-              _sliderValue = value;
-            });
-          },
-          min: 0,
-          max: 100,
-          divisions: 100,
-          // label: '$_sliderValue',
+    return Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: SliderTheme(
+        data: SliderTheme.of(context).copyWith(
+          activeTrackColor: Colors.blue,
+          inactiveTrackColor: AppColors.cartColor,
+          trackHeight: 6,
+          overlayColor: Colors.blue.withAlpha(32),
+          overlayShape: RoundSliderOverlayShape(overlayRadius: 24.0),
+          thumbShape: CustomThumbShape(thumbRadius: 16.0),
+        ),
+        child: RotatedBox(
+          quarterTurns: 3,
+          child: Slider(
+            value: _sliderValue,
+            onChanged: (value) {
+              setState(() {
+                _sliderValue = value;
+              });
+            },
+            min: 0,
+            max: 100,
+            divisions: 100,
+            // label: '$_sliderValue',
+          ),
         ),
       ),
     );
