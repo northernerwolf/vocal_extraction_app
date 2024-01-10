@@ -6,12 +6,23 @@ class PostUrlProvider with ChangeNotifier {
   bool isLoading = false;
   bool waiting = false;
 
-  Future<void> postUrl(String audio, bool youtube) async {
-    final result = await useCase.postData(audio, youtube);
+  Future<void> postUrl(String audio, bool youtube, BuildContext context) async {
+    final result = await useCase.postData(
+      audio,
+      youtube,
+    );
     isLoading = true;
     notifyListeners();
     if (result.statusCode == 200) {
       print('data have');
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        backgroundColor: Colors.green,
+        content: Text(
+          "Starting",
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+        ),
+      ));
+      print(result.data);
       if (result.data != null) {
         isLoading = false;
         notifyListeners();

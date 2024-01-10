@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:vocal_extraction_app/data/providers/provider_post_url.dart';
 import 'package:vocal_extraction_app/presentation/pages/initial/components/new_songs_cart.dart';
 import 'package:vocal_extraction_app/presentation/pages/initial/components/upload_youtube.dart';
 import 'package:vocal_extraction_app/utils/design/app_colors.dart';
@@ -114,7 +116,7 @@ class _NewSongsState extends State<NewSongs> {
                                     textInputAction: TextInputAction.next,
                                     keyboardType: TextInputType.url,
                                     cursorColor: Colors.white,
-                                    style: TextStyle(color: Colors.white),
+                                    style: const TextStyle(color: Colors.white),
                                     decoration: const InputDecoration(
                                         fillColor: AppColors.backgroundColor,
                                         filled: true,
@@ -130,32 +132,54 @@ class _NewSongsState extends State<NewSongs> {
                                     validator: (value) {},
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 10),
-                                  child: InkWell(
-                                    onTap: () {},
-                                    child: Container(
-                                      height: 45,
-                                      width: 65,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: Colors.blue),
-                                      child: Center(
-                                        child: Text(
-                                          'Add',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 16,
-                                            fontFamily: 'ClashDisplay',
+                                Selector<PostUrlProvider, bool>(
+                                    selector: (context, login) =>
+                                        login.isLoading,
+                                    builder: (_, isLoading, __) {
+                                      return Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 10),
+                                        child: InkWell(
+                                          onTap: () async {
+                                            if (textField1Controller
+                                                .text.isNotEmpty) {
+                                              await context
+                                                  .read<PostUrlProvider>()
+                                                  .postUrl(
+                                                      textField1Controller.text
+                                                          .toString(),
+                                                      true,
+                                                      context);
+                                            } else {}
+                                          },
+                                          child: Container(
+                                            height: 45,
+                                            width: 65,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                color: Colors.blue),
+                                            child: Center(
+                                              child: isLoading == false
+                                                  ? const Text(
+                                                      'Add',
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontSize: 16,
+                                                        fontFamily:
+                                                            'ClashDisplay',
+                                                      ),
+                                                    )
+                                                  : const CircularProgressIndicator(),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ),
-                                  ),
-                                )
+                                      );
+                                    })
                               ],
                             ),
                           ),
@@ -168,7 +192,7 @@ class _NewSongsState extends State<NewSongs> {
                               subTitle: subTitle[index]),
                         );
                 }),
-            Spacer(),
+            const Spacer(),
             const Text(
               'Supported files',
               textAlign: TextAlign.center,

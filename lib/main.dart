@@ -1,8 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:vocal_extraction_app/data/providers/provider_post_url.dart';
 import 'package:vocal_extraction_app/presentation/pages/auth/subscription_page.dart';
 import 'package:vocal_extraction_app/presentation/widget/onboarding_page.dart';
 import 'package:vocal_extraction_app/presentation/widget/splash_screen.dart';
@@ -21,7 +21,11 @@ void main() async {
   var pref = await SharedPreferences.getInstance();
   initScreen = pref.getInt("initScreen");
   await pref.setInt("initScreen", 1);
-  runApp(const MyApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider<PostUrlProvider>(
+      create: (_) => PostUrlProvider(),
+    ),
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
