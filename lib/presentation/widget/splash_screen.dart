@@ -1,4 +1,4 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
+// import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -30,17 +30,17 @@ class _SpalshScreenState extends State<SpalshScreen>
   }
 
   sendToken() async {
-    final FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
-    String? token = await firebaseMessaging.getToken();
+    // final FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+    // String? token = await firebaseMessaging.getToken();
     // print('fffffffcccmm');
-    // print(token);
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? tokenAuth = prefs.getString('token');
-    await prefs.setString('tokenFcm', token!);
-    if (tokenAuth != null) {
-      String? tokenFcm = prefs.getString('tokenFcm');
-      if (token != tokenFcm) {}
-    }
+    // // print(token);
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
+    // String? tokenAuth = prefs.getString('token');
+    // await prefs.setString('tokenFcm', token!);
+    // if (tokenAuth != null) {
+    //   String? tokenFcm = prefs.getString('tokenFcm');
+    //   if (token != tokenFcm) {}
+    // }
   }
 
   @override

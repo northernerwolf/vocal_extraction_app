@@ -1,3 +1,5 @@
+// import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -46,22 +48,22 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
     await FirebaseAuth.instance.signInAnonymously();
     var user = await FirebaseAuth.instance.currentUser;
     setDataToFirestore('dd', 'u', user!.uid.toString());
-    // final FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
-    // String? token = await firebaseMessaging.getToken();
-    // print(token);
+    final FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+    String? token = await firebaseMessaging.getToken();
+    print(token);
 
-    // SharedPreferences prefs = await SharedPreferences.getInstance();
-    // String? tokenAuth = prefs.getString('tokenFcm');
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? tokenAuth = prefs.getString('tokenFcm');
 
-    // if (tokenAuth == null) {
-    //   await prefs.setString('tokenFcm', token!);
-    //   setDataToFirestore('dd', 'u', user!.uid.toString());
-    // } else {
-    //   if (tokenAuth != token) {
-    //     await prefs.setString('tokenFcm', token!);
-    //     setDataToFirestoreUpdate('ee', 'eee', user!.uid.toString());
-    //   }
-    // }
+    if (tokenAuth == null) {
+      await prefs.setString('tokenFcm', token!);
+      setDataToFirestore('dd', 'u', user!.uid.toString());
+    } else {
+      if (tokenAuth != token) {
+        await prefs.setString('tokenFcm', token!);
+        setDataToFirestoreUpdate('ee', 'eee', user!.uid.toString());
+      }
+    }
   }
 
   void setDataToFirestore(String audioUrl, String fcmToken, String uid) async {

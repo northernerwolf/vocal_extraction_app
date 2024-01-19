@@ -7,9 +7,28 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:82788046448:android:2f047da2cf64b0d3ae86b5",
+        "mobilesdk_app_id": "1:82788046448:android:58270e5c41675659ae86b5",
         "android_client_info": {
-          "package_name": "com.northernerwolf.vocal_extraction_app"
+          "package_name": "com.guwanchaldurdyyev.vocal_extraction_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUvFuHgA79YAGTEDT2HRiU9bEGVerRn2s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:82788046448:android:8025eaa4c1acaa52ae86b5",
+        "android_client_info": {
+          "package_name": "com.guwanchaldurdyyew.mus_extr"
         }
       },
       "oauth_client": [],
