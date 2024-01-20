@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class NoDataWidget extends StatelessWidget {
   final String image;
@@ -13,17 +14,17 @@ class NoDataWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 120),
+      padding: EdgeInsets.only(top: MediaQuery.of(context).size.height / 4),
       child: Center(
         child: Column(
           children: [
-            Image.asset(
+            SvgPicture.asset(
               image,
               height: 150,
               width: 150,
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.only(top: 20),
               child: Text(
                 text,
                 textAlign: TextAlign.center,
@@ -36,7 +37,7 @@ class NoDataWidget extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 50, right: 50, top: 15),
+              padding: const EdgeInsets.only(left: 50, right: 50, top: 14),
               child: Text(
                 text2,
                 textAlign: TextAlign.center,

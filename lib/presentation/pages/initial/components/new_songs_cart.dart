@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:vocal_extraction_app/utils/design/app_colors.dart';
 
 class NewSongsCart extends StatelessWidget {
@@ -28,11 +29,21 @@ class NewSongsCart extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.asset(
-                icon,
-                height: 56.0,
-                width: 56.0,
-                // color: AppColors.primary,
+              Container(
+                height: 56,
+                width: 56,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
+                child: Padding(
+                  padding: const EdgeInsets.all(6),
+                  child: SvgPicture.asset(
+                    icon,
+                    height: 30.0,
+                    width: 40.0,
+                    // color: AppColors.primary,
+                  ),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 16),

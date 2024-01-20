@@ -31,10 +31,10 @@ class _NewSongsState extends State<NewSongs> {
   }
 
   List<String> image = [
-    'assets/images/google_disk.png',
-    'assets/images/google_foto.png',
-    'assets/images/youtube.png',
-    'assets/images/cloud.png',
+    'assets/icons/files.svg',
+    'assets/icons/galarey.svg',
+    'assets/icons/youtube.svg',
+    'assets/icons/ICloud_logo.svg',
   ];
   List<String> title = [
     'Files App',
@@ -48,21 +48,25 @@ class _NewSongsState extends State<NewSongs> {
     'Add media from your device’s gallery',
     'Any media from cloud services or public URLs. Streaming links won’t work.',
   ];
+  bool isExpanded = false;
+  bool isExpanded2 = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(56.0),
+        preferredSize: const Size.fromHeight(65.0),
         child: AppBar(
           backgroundColor: AppColors.backgroundColor,
           automaticallyImplyLeading: false,
+          toolbarHeight: 65,
           // leadingWidth: double.infinity,
           centerTitle: true,
           title: const Text(
             'New Song',
             style: TextStyle(
-                color: Colors.white,
+                color: Colors.white,             
                 fontSize: 18,
                 fontFamily: 'ClashDisplay',
                 fontStyle: FontStyle.normal,
@@ -70,7 +74,7 @@ class _NewSongsState extends State<NewSongs> {
           ),
           leading: Padding(
             padding: const EdgeInsets.only(
-              left: 10,
+              left: 20,
               right: 20,
             ),
             child: IconButton(
@@ -98,103 +102,322 @@ class _NewSongsState extends State<NewSongs> {
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (BuildContext context, index) {
-                    return index == 2
-                        ? NewSongsCartYoutube(
-                            icon: image[index],
-                            title: title[index],
-                            subTitle: subTitle[index],
-                            text: Padding(
-                              padding: const EdgeInsets.only(top: 15),
-                              child: Row(
-                                children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                        color: AppColors.backgroundColor,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    height: 45,
-                                    width:
-                                        MediaQuery.of(context).size.width - 150,
-                                    child: TextFormField(
-                                      controller: textField1Controller,
-                                      textInputAction: TextInputAction.next,
-                                      keyboardType: TextInputType.url,
-                                      cursorColor: Colors.white,
-                                      style:
-                                          const TextStyle(color: Colors.white),
-                                      decoration: const InputDecoration(
-                                          fillColor: AppColors.backgroundColor,
-                                          filled: true,
-                                          border: InputBorder.none,
-                                          // isDense: true,
-                                          enabledBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(10)),
-                                          ),
-                                          hintText: "https://...",
-                                          hintStyle:
-                                              TextStyle(color: Colors.grey)),
-                                    ),
-                                  ),
-                                  Selector<PostUrlProvider, bool>(
-                                      selector: (context, login) =>
-                                          login.isLoading,
-                                      builder: (_, isLoading, __) {
-                                        return Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 10),
-                                          child: InkWell(
-                                            onTap: () async {
-                                              if (textField1Controller
-                                                  .text.isNotEmpty) {
-                                                await context
-                                                    .read<PostUrlProvider>()
-                                                    .postUrl(
-                                                        textField1Controller
-                                                            .text
-                                                            .toString(),
-                                                        true,
-                                                        context);
-                                              } else {}
-                                            },
-                                            child: Container(
-                                              height: 45,
-                                              width: 65,
-                                              decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                  color: Colors.blue),
-                                              child: Center(
-                                                child: isLoading == false
-                                                    ? const Text(
-                                                        'Add',
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style: TextStyle(
-                                                          color: Colors.white,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          fontSize: 16,
-                                                          fontFamily:
-                                                              'ClashDisplay',
-                                                        ),
-                                                      )
-                                                    : const CircularProgressIndicator(),
-                                              ),
-                                            ),
-                                          ),
-                                        );
-                                      })
-                                ],
-                              ),
-                            ),
-                          )
-                        : InkWell(
+                    return index >= 2
+                        ? GestureDetector(
                             onTap: () {
-                              if (index == 3) {
-                                _showDialog();
-                              }
+                              setState(() {
+                                index == 3
+                                    ? isExpanded2 = !isExpanded2
+                                    : isExpanded = !isExpanded;
+                              });
                             },
+                            child: index == 3
+                                ? Center(
+                                    child: isExpanded2
+                                        ? Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              AnimatedContainer(
+                                                  duration:
+                                                      Duration(seconds: 1),
+                                                  curve: Curves.fastOutSlowIn,
+                                                  width: MediaQuery.of(context)
+                                                      .size
+                                                      .width,
+                                                  child: NewSongsCartYoutube(
+                                                    icon: image[index],
+                                                    title: title[index],
+                                                    subTitle: subTitle[index],
+                                                    text: Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              top: 15),
+                                                      child: Row(
+                                                        children: [
+                                                          Container(
+                                                            decoration: BoxDecoration(
+                                                                color: AppColors
+                                                                    .backgroundColor,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            10)),
+                                                            height: 45,
+                                                            width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width -
+                                                                150,
+                                                            child:
+                                                                TextFormField(
+                                                              controller:
+                                                                  textField1Controller,
+                                                              textInputAction:
+                                                                  TextInputAction
+                                                                      .next,
+                                                              keyboardType:
+                                                                  TextInputType
+                                                                      .url,
+                                                              cursorColor:
+                                                                  Colors.white,
+                                                              style: const TextStyle(
+                                                                  color: Colors
+                                                                      .white),
+                                                              decoration:
+                                                                  const InputDecoration(
+                                                                      fillColor:
+                                                                          AppColors
+                                                                              .backgroundColor,
+                                                                      filled:
+                                                                          true,
+                                                                      border: InputBorder
+                                                                          .none,
+                                                                      // isDense: true,
+                                                                      enabledBorder:
+                                                                          OutlineInputBorder(
+                                                                        borderRadius:
+                                                                            BorderRadius.all(Radius.circular(10)),
+                                                                      ),
+                                                                      hintText:
+                                                                          "https://...",
+                                                                      hintStyle:
+                                                                          TextStyle(
+                                                                              color: Colors.grey)),
+                                                            ),
+                                                          ),
+                                                          Selector<
+                                                                  PostUrlProvider,
+                                                                  bool>(
+                                                              selector: (context,
+                                                                      login) =>
+                                                                  login
+                                                                      .isLoading,
+                                                              builder: (_,
+                                                                  isLoading,
+                                                                  __) {
+                                                                return Padding(
+                                                                  padding:
+                                                                      const EdgeInsets
+                                                                          .only(
+                                                                          left:
+                                                                              10),
+                                                                  child:
+                                                                      InkWell(
+                                                                    onTap:
+                                                                        () async {
+                                                                      if (textField1Controller
+                                                                          .text
+                                                                          .isNotEmpty) {
+                                                                        await context.read<PostUrlProvider>().postUrl(
+                                                                            textField1Controller.text.toString(),
+                                                                            true,
+                                                                            context);
+                                                                      } else {}
+                                                                    },
+                                                                    child:
+                                                                        Container(
+                                                                      height:
+                                                                          45,
+                                                                      width: 65,
+                                                                      decoration: BoxDecoration(
+                                                                          borderRadius: BorderRadius.circular(
+                                                                              10),
+                                                                          color:
+                                                                              Colors.blue),
+                                                                      child:
+                                                                          Center(
+                                                                        child: isLoading ==
+                                                                                false
+                                                                            ? const Text(
+                                                                                'Add',
+                                                                                textAlign: TextAlign.center,
+                                                                                style: TextStyle(
+                                                                                  color: Colors.white,
+                                                                                  fontWeight: FontWeight.w600,
+                                                                                  fontSize: 16,
+                                                                                  fontFamily: 'ClashDisplay',
+                                                                                ),
+                                                                              )
+                                                                            : const CircularProgressIndicator(),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                );
+                                                              })
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  )),
+                                            ],
+                                          )
+                                        : AnimatedContainer(
+                                            duration: Duration(seconds: 1),
+                                            curve: Curves.fastOutSlowIn,
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            child: NewSongsCartYoutube(
+                                                icon: image[index],
+                                                title: title[index],
+                                                subTitle: subTitle[index],
+                                                text: Container())),
+                                  )
+                                : Center(
+                                    child: isExpanded
+                                        ? Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              AnimatedContainer(
+                                                  duration:
+                                                      Duration(seconds: 1),
+                                                  curve: Curves.fastOutSlowIn,
+                                                  width: MediaQuery.of(context)
+                                                      .size
+                                                      .width,
+                                                  child: NewSongsCartYoutube(
+                                                    icon: image[index],
+                                                    title: title[index],
+                                                    subTitle: subTitle[index],
+                                                    text: Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              top: 15),
+                                                      child: Row(
+                                                        children: [
+                                                          Container(
+                                                            decoration: BoxDecoration(
+                                                                color: AppColors
+                                                                    .backgroundColor,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            10)),
+                                                            height: 45,
+                                                            width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width -
+                                                                150,
+                                                            child:
+                                                                TextFormField(
+                                                              controller:
+                                                                  textField2Controller,
+                                                              textInputAction:
+                                                                  TextInputAction
+                                                                      .next,
+                                                              keyboardType:
+                                                                  TextInputType
+                                                                      .url,
+                                                              cursorColor:
+                                                                  Colors.white,
+                                                              style: const TextStyle(
+                                                                  color: Colors
+                                                                      .white),
+                                                              decoration:
+                                                                  const InputDecoration(
+                                                                      fillColor:
+                                                                          AppColors
+                                                                              .backgroundColor,
+                                                                      filled:
+                                                                          true,
+                                                                      border: InputBorder
+                                                                          .none,
+                                                                      // isDense: true,
+                                                                      enabledBorder:
+                                                                          OutlineInputBorder(
+                                                                        borderRadius:
+                                                                            BorderRadius.all(Radius.circular(10)),
+                                                                      ),
+                                                                      hintText:
+                                                                          "https://...",
+                                                                      hintStyle:
+                                                                          TextStyle(
+                                                                              color: Colors.grey)),
+                                                            ),
+                                                          ),
+                                                          Selector<
+                                                                  PostUrlProvider,
+                                                                  bool>(
+                                                              selector: (context,
+                                                                      login) =>
+                                                                  login
+                                                                      .isLoading,
+                                                              builder: (_,
+                                                                  isLoading,
+                                                                  __) {
+                                                                return Padding(
+                                                                  padding:
+                                                                      const EdgeInsets
+                                                                          .only(
+                                                                          left:
+                                                                              10),
+                                                                  child:
+                                                                      InkWell(
+                                                                    onTap:
+                                                                        () async {
+                                                                      if (textField2Controller
+                                                                          .text
+                                                                          .isNotEmpty) {
+                                                                        await context.read<PostUrlProvider>().postUrl(
+                                                                            textField2Controller.text.toString(),
+                                                                            false,
+                                                                            context);
+                                                                        Navigator.pop(
+                                                                            context);
+                                                                      } else {}
+                                                                    },
+                                                                    child:
+                                                                        Container(
+                                                                      height:
+                                                                          45,
+                                                                      width: 65,
+                                                                      decoration: BoxDecoration(
+                                                                          borderRadius: BorderRadius.circular(
+                                                                              10),
+                                                                          color:
+                                                                              Colors.blue),
+                                                                      child:
+                                                                          Center(
+                                                                        child: isLoading ==
+                                                                                false
+                                                                            ? const Text(
+                                                                                'Add',
+                                                                                textAlign: TextAlign.center,
+                                                                                style: TextStyle(
+                                                                                  color: Colors.white,
+                                                                                  fontWeight: FontWeight.w600,
+                                                                                  fontSize: 16,
+                                                                                  fontFamily: 'ClashDisplay',
+                                                                                ),
+                                                                              )
+                                                                            : const CircularProgressIndicator(),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                );
+                                                              })
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  )),
+                                            ],
+                                          )
+                                        : AnimatedContainer(
+                                            duration: Duration(seconds: 1),
+                                            curve: Curves.fastOutSlowIn,
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            child: NewSongsCartYoutube(
+                                                icon: image[index],
+                                                title: title[index],
+                                                subTitle: subTitle[index],
+                                                text: Container())),
+                                  ))
+                        : InkWell(
+                            onTap: () {},
                             child: NewSongsCart(
                                 icon: image[index],
                                 title: title[index],

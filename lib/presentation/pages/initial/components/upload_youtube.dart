@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:vocal_extraction_app/utils/design/app_colors.dart';
 
 class NewSongsCartYoutube extends StatefulWidget {
@@ -52,11 +53,21 @@ class _NewSongsCartYoutubeState extends State<NewSongsCartYoutube> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Image.asset(
-                    widget.icon,
-                    height: 56.0,
-                    width: 56.0,
-                    // color: AppColors.primary,
+                  Container(
+                    height: 56,
+                    width: 56,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(6.0),
+                      child: SvgPicture.asset(
+                        widget.icon,
+                        height: 56.0,
+                        width: 56.0,
+                        // color: AppColors.primary,
+                      ),
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 16),

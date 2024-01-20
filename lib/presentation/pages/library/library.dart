@@ -20,13 +20,15 @@ class _MyLibraryPageState extends State<MyLibraryPage> {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(56.0),
+        preferredSize: const Size.fromHeight(70.0),
         child: AppBar(
           backgroundColor: AppColors.backgroundColor,
           automaticallyImplyLeading: false,
+          toolbarHeight: 70,
           leadingWidth: double.infinity,
           leading: Padding(
-            padding: const EdgeInsets.only(left: 20, right: 5, bottom: 14),
+            padding:
+                const EdgeInsets.only(left: 20, right: 20, bottom: 14, top: 14),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -58,25 +60,25 @@ class _MyLibraryPageState extends State<MyLibraryPage> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // ListView.builder(
-            //     itemCount: 3,
-            //     shrinkWrap: true,
-            //     physics: const NeverScrollableScrollPhysics(),
-            //     itemBuilder: (BuildContext context, index) {
-            //       return InkWell(
-            //         onTap: () {
-            //           Navigator.of(context).push(MaterialPageRoute(
-            //               builder: (context) => const MusicPlayer()));
-            //         },
-            //         child: const SongsCart(
-            //             title: 'Miyagi - I got love', subTitle: '3:45'),
-            //       );
-            //     }),
-            const NoDataWidget(
-              image: 'assets/images/no_data_l.png',
-              text: 'Get Started!',
-              text2: 'Click on the button at the bottom to create a new form',
-            ),
+            ListView.builder(
+                itemCount: 3,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (BuildContext context, index) {
+                  return InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const MusicPlayer()));
+                    },
+                    child: const SongsCart(
+                        title: 'Miyagi - I got love', subTitle: '3:45'),
+                  );
+                }),
+            // const NoDataWidget(
+            //   image: 'assets/images/nodataL.svg',
+            //   text: 'Get Started!',
+            //   text2: 'Click on the button at the bottom to create a new form',
+            // ),
 
             const Spacer(),
             InkWell(

@@ -7,7 +7,7 @@ class Items {
       'sub_title': ' any song',
       'text':
           'Any media from cloud services or public URLs. Streaming links won’t work.',
-      'image': 'assets/images/Cone.png',
+      'image': 'assets/images/onebording.png',
     },
     {
       'id': '1',

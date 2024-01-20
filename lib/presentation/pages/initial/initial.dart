@@ -33,13 +33,15 @@ class _InitialPageState extends State<InitialPage> {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(56.0),
+        preferredSize: const Size.fromHeight(70.0),
         child: AppBar(
           backgroundColor: AppColors.backgroundColor,
           automaticallyImplyLeading: false,
+          toolbarHeight: 70,
           leadingWidth: double.infinity,
           leading: Padding(
-            padding: const EdgeInsets.only(left: 15, right: 5, bottom: 14),
+            padding:
+                const EdgeInsets.only(left: 20, right: 20, bottom: 14, top: 14),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -85,46 +87,49 @@ class _InitialPageState extends State<InitialPage> {
                               subTitle: '3:45');
                         })
                     : const NoDataWidget(
-                        image: 'assets/images/no_data.png',
+                        image: 'assets/images/nodataSongs.svg',
                         text: 'Get Started!',
                         text2:
                             'Click on the button at the bottom to create a new form',
                       ),
                 // const Spacer(),
-                InkWell(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const NewSongs()));
-                  },
-                  child: Container(
-                    height: 60,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                        color: AppColors.cartColor,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Icon(
-                            Icons.add,
-                            size: 26,
-                            color: AppColors.primary,
+                Padding(
+                  padding: const EdgeInsets.only(top: 140),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const NewSongs()));
+                    },
+                    child: Container(
+                      height: 60,
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                          color: AppColors.cartColor,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Icon(
+                              Icons.add,
+                              size: 26,
+                              color: AppColors.primary,
+                            ),
                           ),
-                        ),
-                        Center(
-                          child: Text(
-                            'Add',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontFamily: 'ClashDisplay',
-                                fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w500),
+                          Center(
+                            child: Text(
+                              'Add',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontFamily: 'ClashDisplay',
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.w500),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 )

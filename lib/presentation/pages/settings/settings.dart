@@ -26,16 +26,18 @@ class _SettingsPageState extends State<SettingsPage> {
   ];
   @override
   Widget build(BuildContext context) {
+    double size = MediaQuery.of(context).size.width / 9;
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(56.0),
+        preferredSize: const Size.fromHeight(65.0),
         child: AppBar(
           backgroundColor: AppColors.backgroundColor,
           automaticallyImplyLeading: false,
           leadingWidth: double.infinity,
+          toolbarHeight: 65,
           leading: const Padding(
-            padding: EdgeInsets.only(left: 20, right: 5, bottom: 14),
+            padding: EdgeInsets.only(left: 20, right: 5, bottom: 14, top: 14),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -70,7 +72,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Column(
+                      Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -80,7 +82,7 @@ class _SettingsPageState extends State<SettingsPage> {
                             style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.w600,
-                              fontSize: 18,
+                              fontSize: size / 2.6,
                               fontFamily: 'ClashDisplay',
                             ),
                           ),
@@ -90,7 +92,7 @@ class _SettingsPageState extends State<SettingsPage> {
                             style: TextStyle(
                               color: AppColors.subtitleColor,
                               fontWeight: FontWeight.w500,
-                              fontSize: 14,
+                              fontSize: size / 3.4,
                               fontFamily: 'Poppins',
                             ),
                           ),

@@ -15,6 +15,7 @@ class SubscriptionCart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double size = MediaQuery.of(context).size.width;
+    double size2 = MediaQuery.of(context).size.width / 9;
     return Padding(
       padding: const EdgeInsets.only(bottom: 14),
       child: Container(
@@ -59,10 +60,10 @@ class SubscriptionCart extends StatelessWidget {
                     Text(
                       subTitle,
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: AppColors.subtitleColor,
                         fontWeight: FontWeight.w400,
-                        fontSize: 16,
+                        fontSize: size2 / 3,
                         fontFamily: 'Poppins',
                       ),
                     ),

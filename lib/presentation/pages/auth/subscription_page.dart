@@ -97,12 +97,13 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
   @override
   Widget build(BuildContext context) {
     double size = MediaQuery.of(context).size.width;
+    double size2 = MediaQuery.of(context).size.width / 9;
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       body: SafeArea(
           child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20),
+          padding: const EdgeInsets.only(left: 20, right: 20, top: 14),
           child: Column(
             children: [
               Row(
@@ -234,7 +235,7 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
                 ),
               ),
               const Padding(
-                padding: EdgeInsets.all(16),
+                padding: EdgeInsets.only(top: 22, bottom: 22),
                 child: Center(
                   child: Text(
                     '*Subscriptions renew automatically.',

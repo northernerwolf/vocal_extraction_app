@@ -1,4 +1,3 @@
-// import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -6,7 +5,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vocal_extraction_app/data/providers/provider_get_output.dart';
 import 'package:vocal_extraction_app/data/providers/provider_post_url.dart';
 import 'package:vocal_extraction_app/firebase_options.dart';
-// import 'package:vocal_extraction_app/firebase_options.dart';
 import 'package:vocal_extraction_app/presentation/widget/onboarding_page.dart';
 import 'package:vocal_extraction_app/presentation/widget/splash_screen.dart';
 import 'package:vocal_extraction_app/utils/design/app_colors.dart';

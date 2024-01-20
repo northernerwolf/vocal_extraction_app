@@ -43,12 +43,12 @@ class CustomThumbShape extends SliderComponentShape {
   }
 }
 
-class VerticalCustomSlider extends StatefulWidget {
+class VerticalCustomSlider6 extends StatefulWidget {
   @override
-  _VerticalCustomSliderState createState() => _VerticalCustomSliderState();
+  _VerticalCustomSlider6State createState() => _VerticalCustomSlider6State();
 }
 
-class _VerticalCustomSliderState extends State<VerticalCustomSlider> {
+class _VerticalCustomSlider6State extends State<VerticalCustomSlider6> {
   double _sliderValue = 50.0;
 
   @override
@@ -57,7 +57,7 @@ class _VerticalCustomSliderState extends State<VerticalCustomSlider> {
       padding: const EdgeInsets.all(10.0),
       child: SliderTheme(
         data: SliderTheme.of(context).copyWith(
-          activeTrackColor: AppColors.sliderColor,
+          activeTrackColor: Colors.blue,
           inactiveTrackColor: AppColors.cartColor,
           trackHeight: 6,
           overlayColor: Colors.blue.withAlpha(32),

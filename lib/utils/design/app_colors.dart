@@ -7,7 +7,7 @@ abstract class AppColors {
   static const Color cartColor = Color.fromRGBO(20, 20, 20, 1);
   static const Color subtitleColor = Color.fromRGBO(255, 255, 255, 0.75);
   static const Color borderColor = Color.fromRGBO(255, 255, 255, 0.08);
-  static const Color authRegisterColor = Color.fromRGBO(243, 246, 255, 1);
+  static const Color sliderColor = Color.fromRGBO(50, 197, 244, 1);
   static const Color textFildColor = Color.fromRGBO(243, 246, 255, 1);
 
   static const Color initialButtonColor = Color.fromRGBO(38, 110, 241, 0.2);

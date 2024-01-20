@@ -43,12 +43,12 @@ class CustomThumbShape extends SliderComponentShape {
   }
 }
 
-class VerticalCustomSlider extends StatefulWidget {
+class VerticalCustomSlider5 extends StatefulWidget {
   @override
-  _VerticalCustomSliderState createState() => _VerticalCustomSliderState();
+  _VerticalCustomSlider5State createState() => _VerticalCustomSlider5State();
 }
 
-class _VerticalCustomSliderState extends State<VerticalCustomSlider> {
+class _VerticalCustomSlider5State extends State<VerticalCustomSlider5> {
   double _sliderValue = 50.0;
 
   @override
