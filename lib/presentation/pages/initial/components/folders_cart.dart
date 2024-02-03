@@ -4,10 +4,10 @@ import 'package:vocal_extraction_app/presentation/pages/initial/screens/add_libr
 import 'package:vocal_extraction_app/presentation/pages/initial/screens/rename_playlist.dart';
 import 'package:vocal_extraction_app/utils/design/app_colors.dart';
 
-class SongsCart extends StatelessWidget {
+class FoldersCart extends StatelessWidget {
   final String title;
   final String subTitle;
-  const SongsCart({required this.title, required this.subTitle, super.key});
+  const FoldersCart({required this.title, required this.subTitle, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class SongsCart extends StatelessWidget {
                     color: AppColors.cartColor),
                 child: Center(
                   child: SvgPicture.asset(
-                    'assets/icons/musical-note.svg',
+                    'assets/icons/folder-open.svg',
                     color: Colors.white,
                   ),
                 ),
@@ -80,7 +80,7 @@ class SongsCart extends StatelessWidget {
                     ),
                     builder: (context) {
                       return Container(
-                        height: 280,
+                        height: 240,
                         child: Padding(
                           padding: const EdgeInsets.only(
                               left: 20, right: 20, bottom: 32),
@@ -109,7 +109,7 @@ class SongsCart extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 24),
                                 child: Text(
-                                  title,
+                                  'Halk aydymlar',
                                   textAlign: TextAlign.start,
                                   overflow: TextOverflow.ellipsis,
                                   style: const TextStyle(
@@ -117,40 +117,6 @@ class SongsCart extends StatelessWidget {
                                     fontWeight: FontWeight.w500,
                                     fontSize: 18,
                                     fontFamily: 'ClashDisplay',
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 12, bottom: 12),
-                                child: InkWell(
-                                  onTap: () {
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const NewPlaylist()));
-                                  },
-                                  child: const Row(
-                                    children: [
-                                      Icon(
-                                        Icons.add,
-                                        size: 24,
-                                        color: Colors.white,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(left: 12),
-                                        child: Text(
-                                          'Add to library',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 14,
-                                            fontFamily: 'Poppins',
-                                          ),
-                                        ),
-                                      ),
-                                    ],
                                   ),
                                 ),
                               ),

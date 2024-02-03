@@ -1,56 +1,52 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:vocal_extraction_app/presentation/pages/initial/components/folders_cart.dart';
 import 'package:vocal_extraction_app/presentation/pages/initial/components/songs_cart.dart';
 import 'package:vocal_extraction_app/presentation/pages/initial/screens/new_songs.dart';
-import 'package:vocal_extraction_app/presentation/pages/initial/screens/search_screen.dart';
 import 'package:vocal_extraction_app/presentation/pages/library/components/music_player.dart';
-import 'package:vocal_extraction_app/presentation/pages/library/components/musics_list.dart';
 import 'package:vocal_extraction_app/utils/design/app_colors.dart';
 
-class MyLibraryPage extends StatefulWidget {
-  const MyLibraryPage({super.key});
+class MyMusicsPage extends StatefulWidget {
+  const MyMusicsPage({super.key});
 
   @override
-  State<MyLibraryPage> createState() => _MyLibraryPageState();
+  State<MyMusicsPage> createState() => _MyLibraryPageState();
 }
 
-class _MyLibraryPageState extends State<MyLibraryPage> {
+class _MyLibraryPageState extends State<MyMusicsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(70.0),
+        preferredSize: const Size.fromHeight(65.0),
         child: AppBar(
           backgroundColor: AppColors.backgroundColor,
           automaticallyImplyLeading: false,
-          toolbarHeight: 70,
-          leadingWidth: double.infinity,
+          // leadingWidth: double.infinity,
+          toolbarHeight: 65,
+          centerTitle: true,
+          title: const Text(
+            'Halk aydymlar',
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontFamily: 'ClashDisplay',
+                fontStyle: FontStyle.normal,
+                fontWeight: FontWeight.w500),
+          ),
           leading: Padding(
-            padding:
-                const EdgeInsets.only(left: 20, right: 20, bottom: 14, top: 14),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  'Library',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 30,
-                    fontFamily: 'ClashDisplay',
-                  ),
-                ),
-                IconButton(
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const SearchScreen()));
-                    },
-                    icon: SvgPicture.asset('assets/icons/search.svg'))
-              ],
+            padding: const EdgeInsets.only(
+              left: 10,
+              right: 20,
             ),
+            child: IconButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                icon: const Icon(
+                  Icons.close,
+                  size: 24,
+                  color: Colors.white,
+                )),
           ),
         ),
       ),
@@ -69,9 +65,10 @@ class _MyLibraryPageState extends State<MyLibraryPage> {
                   return InkWell(
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const MyMusicsPage()));
+                          builder: (context) => const MusicPlayer()));
                     },
-                    child: const FoldersCart(title: 'Pop', subTitle: '3:45'),
+                    child: const SongsCart(
+                        title: 'Miyagi - I got love', subTitle: '3:45'),
                   );
                 }),
             // const NoDataWidget(

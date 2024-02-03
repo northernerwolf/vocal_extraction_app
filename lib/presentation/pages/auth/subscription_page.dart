@@ -57,11 +57,11 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
 
     if (tokenAuth == null) {
       await prefs.setString('tokenFcm', token!);
-      setDataToFirestore('dd', 'u', user!.uid.toString());
+      setDataToFirestore('dd', 'u', user.uid.toString());
     } else {
       if (tokenAuth != token) {
         await prefs.setString('tokenFcm', token!);
-        setDataToFirestoreUpdate('ee', 'eee', user!.uid.toString());
+        setDataToFirestoreUpdate('ee', 'eee', user.uid.toString());
       }
     }
   }
@@ -97,7 +97,7 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
   @override
   Widget build(BuildContext context) {
     double size = MediaQuery.of(context).size.width;
-    double size2 = MediaQuery.of(context).size.width / 9;
+    // double size2 = MediaQuery.of(context).size.width / 9;
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       body: SafeArea(

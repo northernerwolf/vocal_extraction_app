@@ -205,7 +205,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
+                  const Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -213,7 +213,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
                         'PIRAMIDA',
                         textAlign: TextAlign.center,
                         overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
+                        style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
                           fontSize: 20,
@@ -223,7 +223,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
                       Text(
                         'ABDY DAYY & VAGRANTDP',
                         textAlign: TextAlign.center,
-                        style: const TextStyle(
+                        style: TextStyle(
                           color: AppColors.subtitleColor,
                           fontWeight: FontWeight.w400,
                           fontSize: 14,
