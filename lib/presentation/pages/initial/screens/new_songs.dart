@@ -66,7 +66,7 @@ class _NewSongsState extends State<NewSongs> {
           title: const Text(
             'New Song',
             style: TextStyle(
-                color: Colors.white,             
+                color: Colors.white,
                 fontSize: 18,
                 fontFamily: 'ClashDisplay',
                 fontStyle: FontStyle.normal,
@@ -224,7 +224,7 @@ class _NewSongsState extends State<NewSongs> {
                                                                           borderRadius: BorderRadius.circular(
                                                                               10),
                                                                           color:
-                                                                              Colors.blue),
+                                                                              AppColors.sliderColor),
                                                                       child:
                                                                           Center(
                                                                         child: isLoading ==
@@ -294,47 +294,62 @@ class _NewSongsState extends State<NewSongs> {
                                                                     BorderRadius
                                                                         .circular(
                                                                             10)),
-                                                            height: 45,
+                                                            height: 50,
                                                             width: MediaQuery.of(
                                                                         context)
                                                                     .size
                                                                     .width -
                                                                 150,
-                                                            child:
-                                                                TextFormField(
-                                                              controller:
-                                                                  textField2Controller,
-                                                              textInputAction:
-                                                                  TextInputAction
-                                                                      .next,
-                                                              keyboardType:
-                                                                  TextInputType
-                                                                      .url,
-                                                              cursorColor:
-                                                                  Colors.white,
-                                                              style: const TextStyle(
-                                                                  color: Colors
-                                                                      .white),
-                                                              decoration:
-                                                                  const InputDecoration(
-                                                                      fillColor:
-                                                                          AppColors
-                                                                              .backgroundColor,
-                                                                      filled:
-                                                                          true,
-                                                                      border: InputBorder
-                                                                          .none,
-                                                                      // isDense: true,
-                                                                      enabledBorder:
-                                                                          OutlineInputBorder(
-                                                                        borderRadius:
-                                                                            BorderRadius.all(Radius.circular(10)),
-                                                                      ),
-                                                                      hintText:
-                                                                          "https://...",
-                                                                      hintStyle:
-                                                                          TextStyle(
-                                                                              color: Colors.grey)),
+                                                            child: Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      top: 0),
+                                                              child:
+                                                                  TextFormField(
+                                                                textAlignVertical:
+                                                                    TextAlignVertical
+                                                                        .center,
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .start,
+                                                                controller:
+                                                                    textField2Controller,
+                                                                textInputAction:
+                                                                    TextInputAction
+                                                                        .next,
+                                                                keyboardType:
+                                                                    TextInputType
+                                                                        .url,
+                                                                cursorColor:
+                                                                    Colors
+                                                                        .white,
+                                                                style: const TextStyle(
+                                                                    color: Colors
+                                                                        .white),
+                                                                decoration:
+                                                                    const InputDecoration(
+                                                                        fillColor:
+                                                                            AppColors
+                                                                                .backgroundColor,
+                                                                        filled:
+                                                                            true,
+                                                                        border: InputBorder
+                                                                            .none,
+                                                                        isDense:
+                                                                            true,
+                                                                        enabledBorder:
+                                                                            OutlineInputBorder(
+                                                                          borderSide:
+                                                                              BorderSide.none,
+                                                                          borderRadius:
+                                                                              BorderRadius.all(Radius.circular(10)),
+                                                                        ),
+                                                                        hintText:
+                                                                            "https://...",
+                                                                        hintStyle:
+                                                                            TextStyle(color: Colors.grey)),
+                                                              ),
                                                             ),
                                                           ),
                                                           Selector<
@@ -377,7 +392,7 @@ class _NewSongsState extends State<NewSongs> {
                                                                           borderRadius: BorderRadius.circular(
                                                                               10),
                                                                           color:
-                                                                              Colors.blue),
+                                                                              AppColors.sliderColor),
                                                                       child:
                                                                           Center(
                                                                         child: isLoading ==
@@ -416,13 +431,10 @@ class _NewSongsState extends State<NewSongs> {
                                                 subTitle: subTitle[index],
                                                 text: Container())),
                                   ))
-                        : InkWell(
-                            onTap: () {},
-                            child: NewSongsCart(
-                                icon: image[index],
-                                title: title[index],
-                                subTitle: subTitle[index]),
-                          );
+                        : NewSongsCart(
+                            icon: image[index],
+                            title: title[index],
+                            subTitle: subTitle[index]);
                   }),
               // const Spacer(),
               const Text(

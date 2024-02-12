@@ -52,7 +52,7 @@ class _MyLibraryPageState extends State<MyMusicsPage> {
       ),
       body: SafeArea(
           child: Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+        padding: const EdgeInsets.only(left: 14, right: 20, bottom: 20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,6 +63,9 @@ class _MyLibraryPageState extends State<MyMusicsPage> {
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (BuildContext context, index) {
                   return InkWell(
+                    splashColor: AppColors.cartColor,
+                    highlightColor: AppColors.cartColor,
+                    borderRadius: BorderRadius.circular(10),
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => const MusicPlayer()));
@@ -79,6 +82,9 @@ class _MyLibraryPageState extends State<MyMusicsPage> {
 
             const Spacer(),
             InkWell(
+              splashColor: AppColors.cartColor,
+              highlightColor: AppColors.cartColor,
+              borderRadius: BorderRadius.circular(10),
               onTap: () {
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => const NewSongs()));

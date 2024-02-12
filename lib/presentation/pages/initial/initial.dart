@@ -5,6 +5,7 @@ import 'package:vocal_extraction_app/data/providers/provider_get_output.dart';
 import 'package:vocal_extraction_app/presentation/pages/initial/components/songs_cart.dart';
 import 'package:vocal_extraction_app/presentation/pages/initial/screens/new_songs.dart';
 import 'package:vocal_extraction_app/presentation/pages/initial/screens/search_screen.dart';
+import 'package:vocal_extraction_app/presentation/pages/library/components/music_player.dart';
 import 'package:vocal_extraction_app/presentation/widget/no_data_widget.dart';
 import 'package:vocal_extraction_app/utils/design/app_colors.dart';
 
@@ -82,9 +83,18 @@ class _InitialPageState extends State<InitialPage> {
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (BuildContext context, index) {
-                          return SongsCart(
-                              title: dataFrirestore.dataList[index].id,
-                              subTitle: '3:45');
+                          return InkWell(
+                            splashColor: AppColors.cartColor,
+                            highlightColor: AppColors.cartColor,
+                            borderRadius: BorderRadius.circular(10),
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => const MusicPlayer()));
+                            },
+                            child: SongsCart(
+                                title: dataFrirestore.dataList[index].id,
+                                subTitle: '3:45'),
+                          );
                         })
                     : const NoDataWidget(
                         image: 'assets/images/nodataSongs.svg',
@@ -96,6 +106,9 @@ class _InitialPageState extends State<InitialPage> {
                 Padding(
                   padding: const EdgeInsets.only(top: 140),
                   child: InkWell(
+                    splashColor: AppColors.cartColor,
+                    highlightColor: AppColors.cartColor,
+                    borderRadius: BorderRadius.circular(10),
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => const NewSongs()));

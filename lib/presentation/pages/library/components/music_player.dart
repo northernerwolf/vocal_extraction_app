@@ -243,13 +243,13 @@ class _MusicPlayerState extends State<MusicPlayer> {
                           color: AppColors.subtitleColor,
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 5),
-                        child: SvgPicture.asset(
-                          'assets/icons/ellipsis-vertical.svg',
-                          height: 24,
-                        ),
-                      )
+                      // Padding(
+                      //   padding: const EdgeInsets.only(top: 5),
+                      //   child: SvgPicture.asset(
+                      //     'assets/icons/ellipsis-vertical.svg',
+                      //     height: 24,
+                      //   ),
+                      // )
                     ],
                   )
                 ],

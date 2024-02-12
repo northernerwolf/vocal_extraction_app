@@ -98,7 +98,8 @@ class NewPlaylist extends StatelessWidget {
             child: Container(
               height: 60,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10), color: Colors.blue),
+                  borderRadius: BorderRadius.circular(10),
+                  color: AppColors.sliderColor),
               child: const Center(
                   child: Text(
                 'Create',

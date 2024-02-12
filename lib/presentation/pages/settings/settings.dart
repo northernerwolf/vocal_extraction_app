@@ -30,12 +30,12 @@ class _SettingsPageState extends State<SettingsPage> {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(65.0),
+        preferredSize: const Size.fromHeight(68.0),
         child: AppBar(
           backgroundColor: AppColors.backgroundColor,
           automaticallyImplyLeading: false,
           leadingWidth: double.infinity,
-          toolbarHeight: 65,
+          toolbarHeight: 68,
           leading: const Padding(
             padding: EdgeInsets.only(left: 20, right: 5, bottom: 14, top: 14),
             child: Row(

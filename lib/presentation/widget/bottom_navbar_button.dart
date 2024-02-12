@@ -72,7 +72,7 @@ class _BottomNavbarButtonState extends State<BottomNavbarButton> {
           Expanded(
             child: AnimatedContainer(
               width: double.infinity,
-              height: widget.index == widget.selectedIndex ? 68 : 0,
+              height: widget.index == widget.selectedIndex ? 64 : 0,
               decoration: const BoxDecoration(),
               duration: const Duration(milliseconds: 500),
               curve: Curves.decelerate,

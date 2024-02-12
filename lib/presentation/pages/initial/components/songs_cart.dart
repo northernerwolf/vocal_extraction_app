@@ -12,7 +12,7 @@ class SongsCart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 8, top: 8),
+      padding: const EdgeInsets.only(bottom: 8, top: 8, left: 5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -67,6 +67,9 @@ class SongsCart extends StatelessWidget {
             ],
           ),
           InkWell(
+              splashColor: AppColors.cartColor,
+              highlightColor: AppColors.cartColor,
+              borderRadius: BorderRadius.circular(10),
               onTap: () {
                 showModalBottomSheet(
                     context: context,
@@ -89,6 +92,11 @@ class SongsCart extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               InkWell(
+                                splashFactory: NoSplash.splashFactory,
+                                splashColor: AppColors.cartColor,
+                                highlightColor: AppColors.cartColor,
+                                hoverColor: AppColors.cartColor,
+                                borderRadius: BorderRadius.circular(10),
                                 onTap: () {
                                   Navigator.of(context).pop();
                                 },
@@ -122,95 +130,127 @@ class SongsCart extends StatelessWidget {
                               ),
                               Padding(
                                 padding:
-                                    const EdgeInsets.only(top: 12, bottom: 12),
+                                    const EdgeInsets.only(top: 6, bottom: 6),
                                 child: InkWell(
+                                  splashFactory: NoSplash.splashFactory,
+                                  splashColor: AppColors.cartColor,
+                                  highlightColor: AppColors.cartColor,
+                                  hoverColor: AppColors.cartColor,
+                                  borderRadius: BorderRadius.circular(10),
                                   onTap: () {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
                                             builder: (context) =>
                                                 const NewPlaylist()));
                                   },
-                                  child: const Row(
-                                    children: [
-                                      Icon(
-                                        Icons.add,
-                                        size: 24,
-                                        color: Colors.white,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(left: 12),
-                                        child: Text(
-                                          'Add to library',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 14,
-                                            fontFamily: 'Poppins',
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                      top: 6,
+                                      bottom: 6,
+                                    ),
+                                    child: const Row(
+                                      children: [
+                                        Icon(
+                                          Icons.add,
+                                          size: 24,
+                                          color: Colors.white,
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(left: 12),
+                                          child: Text(
+                                            'Add to library',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 14,
+                                              fontFamily: 'Poppins',
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
                               Padding(
                                 padding:
-                                    const EdgeInsets.only(top: 12, bottom: 12),
+                                    const EdgeInsets.only(top: 6, bottom: 6),
                                 child: InkWell(
+                                  splashFactory: NoSplash.splashFactory,
+                                  splashColor: AppColors.cartColor,
+                                  highlightColor: AppColors.cartColor,
+                                  hoverColor: AppColors.cartColor,
+                                  borderRadius: BorderRadius.circular(10),
                                   onTap: () {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
                                             builder: (context) =>
                                                 const ReneamePlaylist()));
                                   },
-                                  child: Row(
-                                    children: [
-                                      SvgPicture.asset(
-                                        'assets/icons/edit_name.svg',
-                                        height: 22,
-                                        width: 22,
-                                      ),
-                                      const Padding(
-                                        padding: EdgeInsets.only(left: 12),
-                                        child: Text(
-                                          'Rename',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 14,
-                                            fontFamily: 'Poppins',
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 6, bottom: 6, left: 6),
+                                    child: Row(
+                                      children: [
+                                        SvgPicture.asset(
+                                          'assets/icons/edit_name.svg',
+                                          height: 22,
+                                          width: 22,
+                                        ),
+                                        const Padding(
+                                          padding: EdgeInsets.only(left: 12),
+                                          child: Text(
+                                            'Rename',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 14,
+                                              fontFamily: 'Poppins',
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(top: 12, bottom: 12),
-                                child: Row(
-                                  children: [
-                                    SvgPicture.asset(
-                                      'assets/icons/delet.svg',
-                                      height: 22,
-                                      width: 22,
-                                    ),
-                                    const Padding(
-                                      padding: EdgeInsets.only(left: 12),
-                                      child: Text(
-                                        'Delete',
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 14,
-                                          fontFamily: 'Poppins',
+                                padding: EdgeInsets.only(top: 6, bottom: 6),
+                                child: InkWell(
+                                  splashFactory: NoSplash.splashFactory,
+                                  splashColor: AppColors.cartColor,
+                                  highlightColor: AppColors.cartColor,
+                                  hoverColor: AppColors.cartColor,
+                                  borderRadius: BorderRadius.circular(10),
+                                  onTap: () {},
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 6, bottom: 6, left: 6),
+                                    child: Row(
+                                      children: [
+                                        SvgPicture.asset(
+                                          'assets/icons/delet.svg',
+                                          height: 22,
+                                          width: 22,
                                         ),
-                                      ),
+                                        const Padding(
+                                          padding: EdgeInsets.only(left: 12),
+                                          child: Text(
+                                            'Delete',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 14,
+                                              fontFamily: 'Poppins',
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                  ],
+                                  ),
                                 ),
                               )
                             ],

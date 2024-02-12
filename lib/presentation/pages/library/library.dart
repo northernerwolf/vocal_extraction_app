@@ -56,7 +56,7 @@ class _MyLibraryPageState extends State<MyLibraryPage> {
       ),
       body: SafeArea(
           child: Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+        padding: const EdgeInsets.only(left: 15, right: 20, bottom: 20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,11 +67,19 @@ class _MyLibraryPageState extends State<MyLibraryPage> {
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (BuildContext context, index) {
                   return InkWell(
+                    // focusColor: Colors.amber,
+                    // hoverColor: Colors.amber,
+                    splashColor: AppColors.cartColor,
+                    highlightColor: AppColors.cartColor,
+                    borderRadius: BorderRadius.circular(10),
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => const MyMusicsPage()));
                     },
-                    child: const FoldersCart(title: 'Pop', subTitle: '3:45'),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 5),
+                      child: const FoldersCart(title: 'Pop', subTitle: '3:45'),
+                    ),
                   );
                 }),
             // const NoDataWidget(
@@ -82,6 +90,9 @@ class _MyLibraryPageState extends State<MyLibraryPage> {
 
             const Spacer(),
             InkWell(
+              splashColor: AppColors.cartColor,
+              highlightColor: AppColors.cartColor,
+              borderRadius: BorderRadius.circular(10),
               onTap: () {
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => const NewSongs()));
@@ -92,29 +103,31 @@ class _MyLibraryPageState extends State<MyLibraryPage> {
                 decoration: BoxDecoration(
                     color: AppColors.cartColor,
                     borderRadius: BorderRadius.circular(10)),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Icon(
-                        Icons.add,
-                        size: 26,
-                        color: AppColors.primary,
+                child: Center(
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Icon(
+                          Icons.add,
+                          size: 26,
+                          color: AppColors.primary,
+                        ),
                       ),
-                    ),
-                    Center(
-                      child: Text(
-                        'Add',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontFamily: 'ClashDisplay',
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w500),
+                      Center(
+                        child: Text(
+                          'Add',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontFamily: 'ClashDisplay',
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.w500),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             )

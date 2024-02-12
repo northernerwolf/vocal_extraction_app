@@ -18,7 +18,7 @@ class _SpalshScreenState extends State<SpalshScreen>
     super.initState();
 
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: Colors.white,
+      statusBarColor: AppColors.backgroundColor,
     ));
 
     Future.delayed(const Duration(seconds: 3), () {
@@ -46,10 +46,6 @@ class _SpalshScreenState extends State<SpalshScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar: AppBar(
-        backgroundColor: AppColors.backgroundColor,
-        automaticallyImplyLeading: false,
-      ),
       body: const Center(
         child: Center(
           child: Text(

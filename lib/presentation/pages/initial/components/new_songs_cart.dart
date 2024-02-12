@@ -25,60 +25,63 @@ class NewSongsCart extends StatelessWidget {
             borderRadius: BorderRadius.circular(14)),
         child: Padding(
           padding: const EdgeInsets.all(15.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                height: 56,
-                width: 56,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10)),
-                child: Padding(
-                  padding: const EdgeInsets.all(6),
-                  child: SvgPicture.asset(
-                    icon,
-                    height: 30.0,
-                    width: 40.0,
-                    // color: AppColors.primary,
+          child: InkWell(
+            onTap: () {},
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  height: 56,
+                  width: 56,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(6),
+                    child: SvgPicture.asset(
+                      icon,
+                      height: 30.0,
+                      width: 40.0,
+                      // color: AppColors.primary,
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 16),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 18,
-                        fontFamily: 'ClashDisplay',
-                      ),
-                    ),
-                    SizedBox(
-                      width: size - 150,
-                      child: Text(
-                        subTitle,
-                        // textAlign: TextAlign.start,
-                        maxLines: 4,
+                Padding(
+                  padding: const EdgeInsets.only(left: 16),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        textAlign: TextAlign.center,
                         style: const TextStyle(
-                          color: AppColors.subtitleColor,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 14,
-                          fontFamily: 'Poppins',
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 18,
+                          fontFamily: 'ClashDisplay',
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              )
-            ],
+                      SizedBox(
+                        width: size - 150,
+                        child: Text(
+                          subTitle,
+                          // textAlign: TextAlign.start,
+                          maxLines: 4,
+                          style: const TextStyle(
+                            color: AppColors.subtitleColor,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14,
+                            fontFamily: 'Poppins',
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
