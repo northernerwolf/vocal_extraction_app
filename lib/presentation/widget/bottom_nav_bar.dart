@@ -20,7 +20,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
     super.dispose();
   }
 
-  List page = [
+  List<Widget> page = [
     const InitialPage(),
     const MyLibraryPage(),
     const SettingsPage()
@@ -30,46 +30,41 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: Container(
-        height: 58,
-        decoration: const BoxDecoration(
-          color: AppColors.backgroundColor,
-        ),
-        child: Row(
-          children: [
-            Expanded(
-                child: BottomNavbarButton(
-                    icon: false,
-                    index: 0,
-                    selectedIndex: selectedIndex,
-                    onTapp: () {
-                      onTapp(0);
-                    })),
-            Expanded(
-                child: BottomNavbarButton(
-                    icon: false,
-                    index: 1,
-                    selectedIndex: selectedIndex,
-                    onTapp: () {
-                      onTapp(1);
-                    })),
-            Expanded(
-                child: BottomNavbarButton(
-                    icon: false,
-                    index: 2,
-                    selectedIndex: selectedIndex,
-                    onTapp: () {
-                      onTapp(2);
-                    })),
-          ],
-        ),
-      ),
-      body: IndexedStack(
-        children: [
-          Center(
-            child: page[selectedIndex],
+        height: 60,
+        color: AppColors.backgroundColor,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 5),
+          child: Row(
+            children: [
+              Expanded(
+                  child: BottomNavbarButton(
+                      icon: false,
+                      index: 0,
+                      selectedIndex: selectedIndex,
+                      onTapp: () {
+                        onTapp(0);
+                      })),
+              Expanded(
+                  child: BottomNavbarButton(
+                      icon: false,
+                      index: 1,
+                      selectedIndex: selectedIndex,
+                      onTapp: () {
+                        onTapp(1);
+                      })),
+              Expanded(
+                  child: BottomNavbarButton(
+                      icon: false,
+                      index: 2,
+                      selectedIndex: selectedIndex,
+                      onTapp: () {
+                        onTapp(2);
+                      })),
+            ],
           ),
-        ],
+        ),
       ),
+      body: page[selectedIndex],
     );
   }
 

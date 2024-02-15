@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:vocal_extraction_app/presentation/pages/auth/subscription_page.dart';
 import 'package:vocal_extraction_app/utils/design/app_colors.dart';
 
 class UpgradePlan extends StatelessWidget {
@@ -50,9 +51,13 @@ class UpgradePlan extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: InkWell(
+                  splashColor: AppColors.cartColor,
+                  focusColor: AppColors.cartColor,
+                  hoverColor: AppColors.cartColor,
+                  borderRadius: BorderRadius.circular(10),
                   onTap: () {
-                    // Navigator.of(context).push(
-                    //     MaterialPageRoute(builder: (context) => const NewSongs()));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const SubscriptionPage()));
                   },
                   child: Container(
                     height: 60,

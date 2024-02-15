@@ -1,28 +1,62 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class WebViewContainer extends StatefulWidget {
-  final url;
-  WebViewContainer(this.url);
+class MyStatefulWidget extends StatefulWidget {
+  const MyStatefulWidget({super.key});
+
   @override
-  createState() => _WebViewContainerState(this.url);
+  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
 }
 
-class _WebViewContainerState extends State<WebViewContainer> {
-  var _url;
-  final _key = UniqueKey();
-  _WebViewContainerState(this._url);
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  late final WebViewController controller;
+  var loadingPercentage = 0;
+  var currentUrl = 'https://flutter.dev';
+
+  @override
+  void initState() {
+    super.initState();
+    controller = WebViewController()
+      ..setNavigationDelegate(NavigationDelegate(
+        onPageStarted: (url) {
+          setState(() {
+            loadingPercentage = 0;
+            currentUrl = url;
+          });
+          debugPrint('url: $url');
+        },
+        onProgress: (progress) {
+          setState(() {
+            loadingPercentage = progress;
+          });
+        },
+        onPageFinished: (url) {
+          setState(() {
+            loadingPercentage = 100;
+          });
+        },
+      ))
+      ..loadRequest(
+        Uri.parse('https://flutter.dev'),
+      );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
-        body: Column(
+        appBar: AppBar(
+          title: const Text('Flutter WebView example'),
+        ),
+        body: Stack(
           children: [
-            // Expanded(
-            //     child: WebViewWidget(
-            //       controller: ,
-            //   key: _key,
-            // ))
+            WebViewWidget(
+              controller: controller,
+            ),
+            if (loadingPercentage < 100)
+              LinearProgressIndicator(
+                value: loadingPercentage / 100.0,
+              ),
+            Text('Current URL: $currentUrl'),
           ],
         ));
   }

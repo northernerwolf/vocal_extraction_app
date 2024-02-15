@@ -19,6 +19,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
   late AudioPlayer audioPlayer;
 
   double _sliderValue = 0.0;
+  late IconData _playPauseIcon;
 
   @override
   void initState() {
@@ -27,6 +28,14 @@ class _MusicPlayerState extends State<MusicPlayer> {
     audioPlayer.positionStream.listen((position) {
       setState(() {
         _sliderValue = position.inSeconds.toDouble();
+      });
+    });
+    _playPauseIcon = Icons.play_arrow;
+
+    audioPlayer.playerStateStream.listen((PlayerState playerState) {
+      setState(() {
+        _playPauseIcon =
+            (playerState == PlayerState) ? Icons.pause : Icons.play_arrow;
       });
     });
   }
@@ -271,7 +280,39 @@ class _MusicPlayerState extends State<MusicPlayer> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20, top: 18),
+              padding: const EdgeInsets.only(
+                  left: 40, right: 40, top: 0, bottom: 15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  StreamBuilder<Duration>(
+                    stream: audioPlayer.positionStream,
+                    builder: (context, snapshot) {
+                      final position = snapshot.data ?? Duration.zero;
+                      return Text(
+                        _printDuration(position),
+                        style: TextStyle(color: Colors.white),
+                      );
+                    },
+                  ),
+                  StreamBuilder<Duration?>(
+                    stream: audioPlayer.durationStream,
+                    builder: (context, snapshot) {
+                      final totalDuration = snapshot.data ?? Duration.zero;
+                      return Text(
+                        _printDuration(totalDuration),
+                        style: TextStyle(color: Colors.white),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 20,
+                right: 20,
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -285,6 +326,11 @@ class _MusicPlayerState extends State<MusicPlayer> {
                       await audioPlayer.setUrl(
                           'https://ulgamda.com.tm/uploads/files/2020-07/1595498066_abdy-dayy-vagrantdp-piramida.mp3');
                       audioPlayer.play();
+                      // if (audioPlayer.playerState == PlayerState) {
+                      //   audioPlayer.pause();
+                      // } else {
+                      //   audioPlayer.play();
+                      // }
                     },
                   ),
                   IconButton(
@@ -297,12 +343,12 @@ class _MusicPlayerState extends State<MusicPlayer> {
                 ],
               ),
             ),
-            IconButton(
-              icon: Icon(Icons.pause),
-              onPressed: () {
-                audioPlayer.pause();
-              },
-            ),
+            // IconButton(
+            //   icon: Icon(Icons.pause),
+            //   onPressed: () {
+            //     audioPlayer.pause();
+            //   },
+            // ),
             // SizedBox(
             // height: MediaQuery.of(context).size.width - 50,
             // width: MediaQuery.of(context).size.width,
@@ -319,5 +365,12 @@ class _MusicPlayerState extends State<MusicPlayer> {
         ),
       )),
     );
+  }
+
+  String _printDuration(Duration duration) {
+    String twoDigits(int n) => n.toString().padLeft(1, '0');
+    String twoDigitMinutes = twoDigits(duration.inMinutes.remainder(60));
+    String twoDigitSeconds = twoDigits(duration.inSeconds.remainder(60));
+    return '$twoDigitMinutes:$twoDigitSeconds';
   }
 }

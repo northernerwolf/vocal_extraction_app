@@ -1,3 +1,4 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vocal_extraction_app/data/providers/provider_post_url.dart';
@@ -12,12 +13,18 @@ class NewSongs extends StatefulWidget {
   State<NewSongs> createState() => _NewSongsState();
 }
 
-class _NewSongsState extends State<NewSongs> {
+class _NewSongsState extends State<NewSongs>
+    with SingleTickerProviderStateMixin {
   late final TextEditingController textField1Controller;
   late final TextEditingController textField2Controller;
   @override
   void initState() {
     super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 1),
+    );
+
     textField1Controller = TextEditingController();
     textField2Controller = TextEditingController();
   }
@@ -26,6 +33,7 @@ class _NewSongsState extends State<NewSongs> {
   void dispose() {
     textField1Controller.dispose();
     textField2Controller.dispose();
+    _controller.dispose();
 
     super.dispose();
   }
@@ -51,16 +59,21 @@ class _NewSongsState extends State<NewSongs> {
   bool isExpanded = false;
   bool isExpanded2 = false;
 
+  late AnimationController _controller;
+  Color buttonColor = Colors.grey;
+  Color buttonColor2 = Colors.grey;
+
   @override
   Widget build(BuildContext context) {
+    double size = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(65.0),
+        preferredSize: const Size.fromHeight(70.0),
         child: AppBar(
           backgroundColor: AppColors.backgroundColor,
           automaticallyImplyLeading: false,
-          toolbarHeight: 65,
+          toolbarHeight: 70,
           // leadingWidth: double.infinity,
           centerTitle: true,
           title: const Text(
@@ -83,7 +96,7 @@ class _NewSongsState extends State<NewSongs> {
                 },
                 icon: const Icon(
                   Icons.close,
-                  size: 24,
+                  size: 26,
                   color: Colors.white,
                 )),
           ),
@@ -105,6 +118,12 @@ class _NewSongsState extends State<NewSongs> {
                     return index >= 2
                         ? GestureDetector(
                             onTap: () {
+                              if (_controller.status ==
+                                  AnimationStatus.completed) {
+                                _controller.reverse();
+                              } else {
+                                _controller.forward();
+                              }
                               setState(() {
                                 index == 3
                                     ? isExpanded2 = !isExpanded2
@@ -114,146 +133,185 @@ class _NewSongsState extends State<NewSongs> {
                             child: index == 3
                                 ? Center(
                                     child: isExpanded2
-                                        ? Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              AnimatedContainer(
-                                                  duration:
-                                                      Duration(seconds: 1),
-                                                  curve: Curves.fastOutSlowIn,
-                                                  width: MediaQuery.of(context)
-                                                      .size
-                                                      .width,
-                                                  child: NewSongsCartYoutube(
-                                                    icon: image[index],
-                                                    title: title[index],
-                                                    subTitle: subTitle[index],
-                                                    text: Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              top: 15),
-                                                      child: Row(
-                                                        children: [
-                                                          Container(
-                                                            decoration: BoxDecoration(
-                                                                color: AppColors
-                                                                    .backgroundColor,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            10)),
-                                                            height: 45,
-                                                            width: MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .width -
-                                                                150,
-                                                            child:
-                                                                TextFormField(
-                                                              controller:
-                                                                  textField1Controller,
-                                                              textInputAction:
-                                                                  TextInputAction
-                                                                      .next,
-                                                              keyboardType:
-                                                                  TextInputType
-                                                                      .url,
-                                                              cursorColor:
-                                                                  Colors.white,
-                                                              style: const TextStyle(
-                                                                  color: Colors
-                                                                      .white),
-                                                              decoration:
-                                                                  const InputDecoration(
-                                                                      fillColor:
-                                                                          AppColors
-                                                                              .backgroundColor,
-                                                                      filled:
-                                                                          true,
-                                                                      border: InputBorder
+                                        ? AnimatedContainer(
+                                            duration:
+                                                Duration(microseconds: 5000),
+                                            curve: Curves.easeInOut,
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            child: NewSongsCartYoutube(
+                                              icon: image[index],
+                                              title: title[index],
+                                              subTitle: subTitle[index],
+                                              text: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 15),
+                                                child: Row(
+                                                  children: [
+                                                    Container(
+                                                      height: 50,
+                                                      width: size - 150,
+                                                      decoration: BoxDecoration(
+                                                          color: AppColors
+                                                              .backgroundColor,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      10)),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(
+                                                                left: 14,
+                                                                right: 14),
+                                                        child: Row(children: [
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .only(
+                                                                    top: 3),
+                                                            child: SizedBox(
+                                                              width: size - 180,
+                                                              height: 50,
+                                                              child:
+                                                                  TextFormField(
+                                                                controller:
+                                                                    textField1Controller,
+                                                                // focusNode: widget.focusNode,
+                                                                onChanged:
+                                                                    (value) {
+                                                                  setState(() {
+                                                                    // Update button color dynamically
+                                                                    buttonColor = value.isEmpty
+                                                                        ? Colors
+                                                                            .grey
+                                                                        : AppColors
+                                                                            .sliderColor;
+                                                                  });
+                                                                },
+                                                                // onFieldSubmitted: performSearch,
+                                                                style: const TextStyle(
+                                                                    color: Colors
+                                                                        .white),
+                                                                maxLines: 1,
+                                                                textInputAction:
+                                                                    TextInputAction
+                                                                        .next,
+                                                                keyboardType:
+                                                                    TextInputType
+                                                                        .url,
+                                                                cursorColor:
+                                                                    Colors
+                                                                        .white,
+                                                                decoration:
+                                                                    const InputDecoration(
+                                                                  isDense: true,
+                                                                  hintText:
+                                                                      "https://...",
+                                                                  hintStyle:
+                                                                      TextStyle(
+                                                                    color: AppColors
+                                                                        .subtitleColor,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400,
+                                                                    fontSize:
+                                                                        16,
+                                                                    fontFamily:
+                                                                        'Poppins',
+                                                                  ),
+                                                                  border:
+                                                                      InputBorder
                                                                           .none,
-                                                                      // isDense: true,
-                                                                      enabledBorder:
-                                                                          OutlineInputBorder(
-                                                                        borderRadius:
-                                                                            BorderRadius.all(Radius.circular(10)),
-                                                                      ),
-                                                                      hintText:
-                                                                          "https://...",
-                                                                      hintStyle:
-                                                                          TextStyle(
-                                                                              color: Colors.grey)),
+                                                                  focusedBorder:
+                                                                      InputBorder
+                                                                          .none,
+                                                                  enabledBorder:
+                                                                      InputBorder
+                                                                          .none,
+                                                                  errorBorder:
+                                                                      InputBorder
+                                                                          .none,
+                                                                  disabledBorder:
+                                                                      InputBorder
+                                                                          .none,
+                                                                ),
+                                                              ),
                                                             ),
                                                           ),
-                                                          Selector<
-                                                                  PostUrlProvider,
-                                                                  bool>(
-                                                              selector: (context,
-                                                                      login) =>
-                                                                  login
-                                                                      .isLoading,
-                                                              builder: (_,
-                                                                  isLoading,
-                                                                  __) {
-                                                                return Padding(
-                                                                  padding:
-                                                                      const EdgeInsets
-                                                                          .only(
-                                                                          left:
-                                                                              10),
-                                                                  child:
-                                                                      InkWell(
-                                                                    onTap:
-                                                                        () async {
-                                                                      if (textField1Controller
-                                                                          .text
-                                                                          .isNotEmpty) {
-                                                                        await context.read<PostUrlProvider>().postUrl(
-                                                                            textField1Controller.text.toString(),
-                                                                            true,
-                                                                            context);
-                                                                      } else {}
-                                                                    },
-                                                                    child:
-                                                                        Container(
-                                                                      height:
-                                                                          45,
-                                                                      width: 65,
-                                                                      decoration: BoxDecoration(
-                                                                          borderRadius: BorderRadius.circular(
-                                                                              10),
-                                                                          color:
-                                                                              AppColors.sliderColor),
-                                                                      child:
-                                                                          Center(
-                                                                        child: isLoading ==
-                                                                                false
-                                                                            ? const Text(
-                                                                                'Add',
-                                                                                textAlign: TextAlign.center,
-                                                                                style: TextStyle(
-                                                                                  color: Colors.white,
-                                                                                  fontWeight: FontWeight.w600,
-                                                                                  fontSize: 16,
-                                                                                  fontFamily: 'ClashDisplay',
-                                                                                ),
-                                                                              )
-                                                                            : const CircularProgressIndicator(),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                );
-                                                              })
-                                                        ],
+                                                        ]),
                                                       ),
                                                     ),
-                                                  )),
-                                            ],
-                                          )
+                                                    Selector<PostUrlProvider,
+                                                            bool>(
+                                                        selector:
+                                                            (context, login) =>
+                                                                login.isLoading,
+                                                        builder:
+                                                            (_, isLoading, __) {
+                                                          return Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .only(
+                                                                    left: 10),
+                                                            child: InkWell(
+                                                              onTap: () async {
+                                                                if (textField1Controller
+                                                                    .text
+                                                                    .isNotEmpty) {
+                                                                  await context
+                                                                      .read<
+                                                                          PostUrlProvider>()
+                                                                      .postUrl(
+                                                                          textField1Controller
+                                                                              .text
+                                                                              .toString(),
+                                                                          false,
+                                                                          context);
+                                                                } else {}
+                                                              },
+                                                              child: Container(
+                                                                height: 45,
+                                                                width: 65,
+                                                                decoration: BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            10),
+                                                                    color:
+                                                                        buttonColor),
+                                                                child: Center(
+                                                                  child: isLoading ==
+                                                                          false
+                                                                      ? const Text(
+                                                                          'Add',
+                                                                          textAlign:
+                                                                              TextAlign.center,
+                                                                          style:
+                                                                              TextStyle(
+                                                                            color:
+                                                                                Colors.white,
+                                                                            fontWeight:
+                                                                                FontWeight.w600,
+                                                                            fontSize:
+                                                                                16,
+                                                                            fontFamily:
+                                                                                'ClashDisplay',
+                                                                          ),
+                                                                        )
+                                                                      : const CircularProgressIndicator(),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          );
+                                                        })
+                                                  ],
+                                                ),
+                                              ),
+                                            ))
                                         : AnimatedContainer(
                                             duration: Duration(seconds: 1),
-                                            curve: Curves.fastOutSlowIn,
+                                            curve: Curves.easeInOut,
                                             width: MediaQuery.of(context)
                                                 .size
                                                 .width,
@@ -287,6 +345,8 @@ class _NewSongsState extends State<NewSongs> {
                                                       child: Row(
                                                         children: [
                                                           Container(
+                                                            height: 50,
+                                                            width: size - 150,
                                                             decoration: BoxDecoration(
                                                                 color: AppColors
                                                                     .backgroundColor,
@@ -294,62 +354,83 @@ class _NewSongsState extends State<NewSongs> {
                                                                     BorderRadius
                                                                         .circular(
                                                                             10)),
-                                                            height: 50,
-                                                            width: MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .width -
-                                                                150,
                                                             child: Padding(
                                                               padding:
                                                                   const EdgeInsets
                                                                       .only(
-                                                                      top: 0),
-                                                              child:
-                                                                  TextFormField(
-                                                                textAlignVertical:
-                                                                    TextAlignVertical
-                                                                        .center,
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .start,
-                                                                controller:
-                                                                    textField2Controller,
-                                                                textInputAction:
-                                                                    TextInputAction
-                                                                        .next,
-                                                                keyboardType:
-                                                                    TextInputType
-                                                                        .url,
-                                                                cursorColor:
-                                                                    Colors
-                                                                        .white,
-                                                                style: const TextStyle(
-                                                                    color: Colors
-                                                                        .white),
-                                                                decoration:
-                                                                    const InputDecoration(
-                                                                        fillColor:
-                                                                            AppColors
-                                                                                .backgroundColor,
-                                                                        filled:
-                                                                            true,
-                                                                        border: InputBorder
-                                                                            .none,
-                                                                        isDense:
-                                                                            true,
-                                                                        enabledBorder:
-                                                                            OutlineInputBorder(
-                                                                          borderSide:
-                                                                              BorderSide.none,
-                                                                          borderRadius:
-                                                                              BorderRadius.all(Radius.circular(10)),
+                                                                      left: 14,
+                                                                      right:
+                                                                          14),
+                                                              child: Row(
+                                                                  children: [
+                                                                    Padding(
+                                                                      padding: const EdgeInsets
+                                                                          .only(
+                                                                          top:
+                                                                              3),
+                                                                      child:
+                                                                          SizedBox(
+                                                                        width: size -
+                                                                            180,
+                                                                        height:
+                                                                            50,
+                                                                        child:
+                                                                            TextFormField(
+                                                                          textAlignVertical:
+                                                                              TextAlignVertical.center,
+                                                                          textAlign:
+                                                                              TextAlign.start,
+                                                                          // textInputAction:
+                                                                          //     TextInputAction.next,
+                                                                          keyboardType:
+                                                                              TextInputType.url,
+                                                                          cursorColor:
+                                                                              Colors.white,
+                                                                          controller:
+                                                                              textField2Controller,
+                                                                          // focusNode: widget.focusNode,
+                                                                          onChanged:
+                                                                              (value) {
+                                                                            setState(() {
+                                                                              // Update button color dynamically
+                                                                              buttonColor2 = value.isEmpty ? Colors.grey : AppColors.sliderColor;
+                                                                            });
+                                                                          },
+                                                                          // onFieldSubmitted: performSearch,
+                                                                          style:
+                                                                              const TextStyle(color: Colors.white),
+                                                                          maxLines:
+                                                                              1,
+                                                                          decoration:
+                                                                              const InputDecoration(
+                                                                            // filled:
+                                                                            //     true,
+                                                                            isDense:
+                                                                                true,
+                                                                            hintText:
+                                                                                "https://...",
+                                                                            hintStyle:
+                                                                                TextStyle(
+                                                                              color: AppColors.subtitleColor,
+                                                                              fontWeight: FontWeight.w400,
+                                                                              fontSize: 16,
+                                                                              fontFamily: 'Poppins',
+                                                                            ),
+                                                                            border:
+                                                                                InputBorder.none,
+                                                                            focusedBorder:
+                                                                                InputBorder.none,
+                                                                            enabledBorder:
+                                                                                InputBorder.none,
+                                                                            errorBorder:
+                                                                                InputBorder.none,
+                                                                            disabledBorder:
+                                                                                InputBorder.none,
+                                                                          ),
                                                                         ),
-                                                                        hintText:
-                                                                            "https://...",
-                                                                        hintStyle:
-                                                                            TextStyle(color: Colors.grey)),
-                                                              ),
+                                                                      ),
+                                                                    ),
+                                                                  ]),
                                                             ),
                                                           ),
                                                           Selector<
@@ -377,7 +458,7 @@ class _NewSongsState extends State<NewSongs> {
                                                                           .isNotEmpty) {
                                                                         await context.read<PostUrlProvider>().postUrl(
                                                                             textField2Controller.text.toString(),
-                                                                            false,
+                                                                            true,
                                                                             context);
                                                                         Navigator.pop(
                                                                             context);
@@ -392,7 +473,7 @@ class _NewSongsState extends State<NewSongs> {
                                                                           borderRadius: BorderRadius.circular(
                                                                               10),
                                                                           color:
-                                                                              AppColors.sliderColor),
+                                                                              buttonColor2),
                                                                       child:
                                                                           Center(
                                                                         child: isLoading ==

@@ -1,8 +1,9 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:vocal_extraction_app/utils/design/app_colors.dart';
 
-class NewSongsCart extends StatelessWidget {
+class NewSongsCart extends StatefulWidget {
   final String icon;
   final String title;
   final String subTitle;
@@ -13,20 +14,40 @@ class NewSongsCart extends StatelessWidget {
       super.key});
 
   @override
+  State<NewSongsCart> createState() => _NewSongsCartState();
+}
+
+class _NewSongsCartState extends State<NewSongsCart> {
+  openExplorer() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['jpg', 'pdf', 'doc'],
+    );
+    if (result != null) {
+      print("File selected");
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     double size = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.only(bottom: 14),
-      child: Container(
-        // height: 80,
-        width: size,
-        decoration: BoxDecoration(
-            color: AppColors.cartColor,
-            borderRadius: BorderRadius.circular(14)),
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: InkWell(
-            onTap: () {},
+      child: InkWell(
+        splashColor: AppColors.cartColor,
+        highlightColor: AppColors.cartColor,
+        borderRadius: BorderRadius.circular(10),
+        onTap: () {
+          openExplorer();
+        },
+        child: Container(
+          // height: 80,
+          width: size,
+          decoration: BoxDecoration(
+              color: AppColors.cartColor,
+              borderRadius: BorderRadius.circular(14)),
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,7 +61,7 @@ class NewSongsCart extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(6),
                     child: SvgPicture.asset(
-                      icon,
+                      widget.icon,
                       height: 30.0,
                       width: 40.0,
                       // color: AppColors.primary,
@@ -54,7 +75,7 @@ class NewSongsCart extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        title,
+                        widget.title,
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                           color: Colors.white,
@@ -66,7 +87,7 @@ class NewSongsCart extends StatelessWidget {
                       SizedBox(
                         width: size - 150,
                         child: Text(
-                          subTitle,
+                          widget.subTitle,
                           // textAlign: TextAlign.start,
                           maxLines: 4,
                           style: const TextStyle(

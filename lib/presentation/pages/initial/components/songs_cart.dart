@@ -259,7 +259,10 @@ class SongsCart extends StatelessWidget {
                       );
                     });
               },
-              child: SvgPicture.asset('assets/icons/ellipsis-vertical.svg'))
+              child: Padding(
+                padding: const EdgeInsets.all(3.0),
+                child: SvgPicture.asset('assets/icons/ellipsis-vertical.svg'),
+              ))
         ],
       ),
     );

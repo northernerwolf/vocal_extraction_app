@@ -63,7 +63,6 @@ class _SearchScreenState extends State<SearchScreen> {
                                 // onFieldSubmitted: performSearch,
                                 style: const TextStyle(color: Colors.white),
                                 maxLines: 1,
-
                                 decoration: const InputDecoration(
                                   hintText: 'Search',
                                   hintStyle: TextStyle(
@@ -98,7 +97,7 @@ class _SearchScreenState extends State<SearchScreen> {
         child: Column(
           children: [
             NoDataWidget(
-              image: 'assets/images/no_found.png',
+              image: 'assets/icons/search_no_data.svg',
               text: 'Not Found!',
               text2: 'Click on the button at the bottom to create a new form',
             ),
